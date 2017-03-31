@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "467963313096",
+    "firebase_url": "https://hackbandung-eb950.firebaseio.com",
+    "project_id": "hackbandung-eb950",
+    "storage_bucket": "hackbandung-eb950.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467963313096:android:6f99c33a35fca87c",
+        "android_client_info": {
+          "package_name": "com.sai.hackbandung"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "467963313096-uhmqdpda4cmtkvsk7g2pq8pmuv0u27k7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHtbF5xwSaIp7NQGv6FXC7r39r5ov32xs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

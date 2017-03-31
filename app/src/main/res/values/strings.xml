@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">HACKbandung</string>
+    <string name="app_title_HACK">H A C K</string>
+    <string name="app_title_bandung">bandung</string>
+    <string name="buttonMainActivity_SIGNUP">Sign Up</string>
+    <string name="textViewMainActivity_OR">--- or ---</string>
+    <string name="textViewMainActivity_HAVE_AN_ACCOUNT">Already have an account? Sign in</string>
+</resources>

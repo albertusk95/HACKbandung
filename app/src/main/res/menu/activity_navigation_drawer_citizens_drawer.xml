@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_WRITE_A_NEW_REPORT"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Write a new report" />
+        <item
+            android:id="@+id/nav_ALL_REPORTS"
+            android:icon="@mipmap/ic_launcher"
+            android:title="All reports" />
+        <item
+            android:id="@+id/nav_WAITING_REPORTS"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Waiting reports" />
+        <item
+            android:id="@+id/nav_IN_PROGRESS_REPORTS"
+            android:icon="@mipmap/ic_launcher"
+            android:title="In progress reports" />
+        <item
+            android:id="@+id/nav_COMPLETED_REPORTS"
+            android:icon="@mipmap/ic_launcher"
+            android:title="Completed reports" />
+
+    </group>
+</menu>

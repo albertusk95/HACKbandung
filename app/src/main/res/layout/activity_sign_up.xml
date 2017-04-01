@@ -8,10 +8,86 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/app_background_color"
     tools:context="com.sai.hackbandung.SignUpActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <!-- FULL NAME -->
+    <LinearLayout
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editTextSignUpActivity_FULL_NAME"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter full name" />
+
+        <!-- USERNAME -->
+        <EditText
+            android:id="@+id/editTextSignUpActivity_USERNAME"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter username" />
+
+        <!-- EMAIL -->
+        <EditText
+            android:id="@+id/editTextSignUpActivity_EMAIL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter email" />
+
+        <!-- PASSWORD -->
+        <EditText
+            android:id="@+id/editTextSignUpActivity_PASSWORD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter password" />
+
+        <!-- CONFIRM PASSWORD -->
+        <EditText
+            android:id="@+id/editTextSignUpActivity_CONFIRM_PASSWORD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="12dp"
+            android:hint="Enter password confirmation" />
+
+
+        <!-- SIGN UP BUTTON -->
+        <Button
+            android:id="@+id/buttonSignUpActivity_SIGNUP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="25dp"
+            android:text="@string/buttonSignUpActivity_SIGNUP" />
+
+        <!-- ALREADY HAVE AN ACCOUNT -->
+        <TextView
+            android:id="@+id/textViewSignUpActivity_HAVE_AN_ACCOUNT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="@dimen/activity_signup_textview_have_an_account"
+            android:text="@string/textViewSignUpActivity_HAVE_AN_ACCOUNT" />
+
+    </LinearLayout>
+
 </RelativeLayout>

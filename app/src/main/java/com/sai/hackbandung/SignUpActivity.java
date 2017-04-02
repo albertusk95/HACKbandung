@@ -50,6 +50,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.SignUpActivity_TITLE);
         setContentView(R.layout.activity_sign_up);
 
         // initialize username and email existence status
@@ -132,49 +133,9 @@ public class SignUpActivity extends AppCompatActivity {
         // check whether the username is already exist
         validateUsernameAndEmailExistence();
 
-
-        if (isUsernameExist == 0 && isEmailExist == 0) {
-
-            // add username, fullname, and email to Firebase realtime database
-            // set the user role to "unknown" for the first time
-            //UserInfo new_ui = new UserInfo(username, email, password, full_name, "unknown");
-
-            //DatabaseReference myRef = database.getReference("CITIZENS/" + username);
-            //myRef.setValue(new_ui);
-
-            //Toast.makeText(SignUpActivity.this, "Successfully registered", Toast.LENGTH_LONG).show();
-
-            // redirect to main page
-            Intent intentForUserRole = new Intent(SignUpActivity.this, UserRoleActivity.class);
-
-            intentForUserRole.putExtra("USERNAME_FROM_SIGNUP", username);
-            intentForUserRole.putExtra("EMAIL_FROM_SIGNUP", email);
-            intentForUserRole.putExtra("PASSWORD_FROM_SIGNUP", password);
-            intentForUserRole.putExtra("FULLNAME_FROM_SIGNUP", full_name);
-
-            SignUpActivity.this.startActivity(intentForUserRole);
-
-        } else {
-
-            if (isUsernameExist == 1) {
-                // username is already exist
-                Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_LONG).show();
-            }
-
-            if (isEmailExist == 1) {
-                // email is already exist
-                Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_LONG).show();
-            }
-
-            return;
-
-        }
-
     }
 
     private void validateUsernameAndEmailExistence() {
-
-        int usernameAlreadyExists = 0;
 
         DatabaseReference myRef = database.getReference();
 
@@ -187,15 +148,17 @@ public class SignUpActivity extends AppCompatActivity {
                 int usernameExistenceStatus = 0;
                 int emailExistenceStatus = 0;
 
+                Toast.makeText(SignUpActivity.this, "On Data Change Citizens", Toast.LENGTH_LONG).show();
+
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
                     CitizensInfo ci = noteDataSnapshot.getValue(CitizensInfo.class);
 
-                    if (ci.getUsername().equals(username)) {
+                    if (ci.username.equals(username)) {
                         usernameExistenceStatus = 1;
                     }
 
-                    if (ci.getEmail().equals(email)) {
+                    if (ci.email.equals(email)) {
                         emailExistenceStatus = 1;
                     }
 
@@ -207,6 +170,24 @@ public class SignUpActivity extends AppCompatActivity {
 
                 isUsernameExist = usernameExistenceStatus;
                 isEmailExist = emailExistenceStatus;
+
+
+                if (isUsernameExist == 0 && isEmailExist == 0) {
+
+
+                } else {
+
+                    if (isUsernameExist == 1) {
+                        // username is already exist
+                        Toast.makeText(SignUpActivity.this, "Username citizens already exists: " + username, Toast.LENGTH_LONG).show();
+                    }
+
+                    if (isEmailExist == 1) {
+                        // email is already exist
+                        Toast.makeText(SignUpActivity.this, "Email citizens already exists: " + email, Toast.LENGTH_LONG).show();
+                    }
+
+                }
 
             }
 
@@ -228,15 +209,17 @@ public class SignUpActivity extends AppCompatActivity {
                     int usernameExistenceStatus = 0;
                     int emailExistenceStatus = 0;
 
+                    Toast.makeText(SignUpActivity.this, "On Data Change Government", Toast.LENGTH_LONG).show();
+
                     for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
                         GovernmentInfo gi = noteDataSnapshot.getValue(GovernmentInfo.class);
 
-                        if (gi.getUsername().equals(username)) {
+                        if (gi.username.equals(username)) {
                             usernameExistenceStatus = 1;
                         }
 
-                        if (gi.getEmail().equals(email)) {
+                        if (gi.email.equals(email)) {
                             emailExistenceStatus = 1;
                         }
 
@@ -249,6 +232,44 @@ public class SignUpActivity extends AppCompatActivity {
                     isUsernameExist = usernameExistenceStatus;
                     isEmailExist = emailExistenceStatus;
 
+
+                    if (isUsernameExist == 0 && isEmailExist == 0) {
+
+                        // add username, fullname, and email to Firebase realtime database
+                        // set the user role to "unknown" for the first time
+                        //UserInfo new_ui = new UserInfo(username, email, password, full_name, "unknown");
+
+                        //DatabaseReference myRef = database.getReference("CITIZENS/" + username);
+                        //myRef.setValue(new_ui);
+
+                        //Toast.makeText(SignUpActivity.this, "Successfully registered", Toast.LENGTH_LONG).show();
+
+                        // redirect to main page
+                        Intent intentForUserRole = new Intent(SignUpActivity.this, UserRoleActivity.class);
+
+                        intentForUserRole.putExtra("USERNAME_FROM_SIGNUP", username);
+                        intentForUserRole.putExtra("EMAIL_FROM_SIGNUP", email);
+                        intentForUserRole.putExtra("PASSWORD_FROM_SIGNUP", password);
+                        intentForUserRole.putExtra("FULLNAME_FROM_SIGNUP", full_name);
+
+                        Toast.makeText(SignUpActivity.this, "Regstration success", Toast.LENGTH_LONG).show();
+
+                        SignUpActivity.this.startActivity(intentForUserRole);
+
+                    } else {
+
+                        if (isUsernameExist == 1) {
+                            // username is already exist
+                            Toast.makeText(SignUpActivity.this, "Username government already exists", Toast.LENGTH_LONG).show();
+                        }
+
+                        if (isEmailExist == 1) {
+                            // email is already exist
+                            Toast.makeText(SignUpActivity.this, "Email government already exists", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
                 }
 
                 @Override
@@ -257,6 +278,10 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
             });
+
+        } else {
+
+            Toast.makeText(SignUpActivity.this, "Username or Email already exist", Toast.LENGTH_LONG).show();
 
         }
 

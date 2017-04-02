@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -26,6 +27,7 @@ public class UserRoleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.UserRoleActivity_TITLE);
         setContentView(R.layout.activity_user_role);
 
         // initialize the database
@@ -33,6 +35,10 @@ public class UserRoleActivity extends AppCompatActivity {
 
         // retrieve the username from signup
         retrieveDataFromSignup(savedInstanceState);
+
+
+        Toast.makeText(UserRoleActivity.this, "UserRole: " + fullNameFromSignUp + ", " + usernameFromSignUp, Toast.LENGTH_LONG).show();
+
 
         // initialize views
         buttonUserRole_CITIZENS = (Button) findViewById(R.id.buttonUserRoleActivity_CITIZENS);
@@ -48,7 +54,11 @@ public class UserRoleActivity extends AppCompatActivity {
                 saveUserRole_CITIZENS();
 
                 // redirect to the main page
-                UserRoleActivity.this.startActivity(new Intent(UserRoleActivity.this, NavigationDrawerCitizensActivity.class));
+                Intent intentForNavDrawerCitizens = new Intent(UserRoleActivity.this, NavigationDrawerCitizensActivity.class);
+
+                intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameFromSignUp);
+
+                UserRoleActivity.this.startActivity(intentForNavDrawerCitizens);
 
             }
 
@@ -116,8 +126,10 @@ public class UserRoleActivity extends AppCompatActivity {
         // add username, fullname, email, and user role to Firebase realtime database
         CitizensInfo new_CI = new CitizensInfo(usernameFromSignUp, emailFromSignUp, passwordFromSignUp, fullNameFromSignUp);
 
-        DatabaseReference myRef = database.getReference("CITIZENS/" + usernameFromSignUp);
-        myRef.setValue(new_CI);
+        DatabaseReference myRef = database.getReference();
+        myRef.child("CITIZENS/" + usernameFromSignUp).setValue(new_CI);
+
+        Toast.makeText(UserRoleActivity.this, "saveUserRole_CITIZENS" + usernameFromSignUp + ":" + fullNameFromSignUp, Toast.LENGTH_LONG).show();
 
     }
 

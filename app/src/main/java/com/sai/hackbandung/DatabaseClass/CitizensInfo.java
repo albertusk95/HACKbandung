@@ -2,21 +2,33 @@ package com.sai.hackbandung.DatabaseClass;
 
 public class CitizensInfo {
 
+    /*
     private String username;
     private String email;
     private String password;
-    private String full_name;
+    private String fullname;
+    */
 
-    public CitizensInfo(String username, String email, String password, String full_name) {
+    public String username;
+    public String email;
+    public String password;
+    public String fullname;
+
+    public CitizensInfo() {
+
+    }
+
+    public CitizensInfo(String username, String email, String password, String fullname) {
 
         this.username = username;
         this.email = email;
         this.password = password;
-        this.full_name = full_name;
+        this.fullname = fullname;
 
     }
 
     // SETTER
+    /*
     public void setUsername(String username) {
         this.username = username;
     }
@@ -29,8 +41,8 @@ public class CitizensInfo {
         this.password = password;
     }
 
-    public  void setFullName(String full_name) {
-        this.full_name = full_name;
+    public  void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     // GETTER
@@ -46,8 +58,9 @@ public class CitizensInfo {
         return password;
     }
 
-    public String FullName() {
-        return full_name;
+    public String getFullname() {
+        return fullname;
     }
+    */
 
 }

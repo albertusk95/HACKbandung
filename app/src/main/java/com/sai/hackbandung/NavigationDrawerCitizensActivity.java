@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sai.hackbandung.Fragments.AllReportsCitizens;
 import com.sai.hackbandung.Fragments.CompletedReportsCitizens;
@@ -21,13 +22,16 @@ import com.sai.hackbandung.Fragments.InProgressReportsCitizens;
 import com.sai.hackbandung.Fragments.WaitingReportsCitizens;
 import com.sai.hackbandung.Fragments.WriteANewReportCitizens;
 
-public class NavigationDrawerCitizensActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationDrawerCitizensActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String usernameFromSignInOrUserRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.NavigationDrawerCitizensActivity_TITLE);
         setContentView(R.layout.activity_navigation_drawer_citizens);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -39,6 +43,12 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // retrieve intent data from User Role Activity
+        retrieveIntentData(savedInstanceState);
+
+        Toast.makeText(NavigationDrawerCitizensActivity.this, "intent from user role: " + usernameFromSignInOrUserRole, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -80,32 +90,70 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
 
+        // Data to be sent to Fragment:
+        // - username
+
+        // Use bundle to pass data
+        Bundle data = new Bundle();
+        data.putString("USERNAME_FROM_NAVDRAWERCITIZENS", usernameFromSignInOrUserRole);
+
         switch (id){
             case R.id.nav_WRITE_A_NEW_REPORT:
                 fragment = new WriteANewReportCitizens();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_ALL_REPORTS:
                 fragment = new AllReportsCitizens();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_WAITING_REPORTS:
                 fragment = new WaitingReportsCitizens();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_IN_PROGRESS_REPORTS:
                 fragment = new InProgressReportsCitizens();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_COMPLETED_REPORTS:
                 fragment = new CompletedReportsCitizens();
+                fragment.setArguments(data);
                 break;
         }
 
         if (fragment != null){
+
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.content_frame, fragment);
             ft.commit();
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void retrieveIntentData(Bundle savedInstanceState) {
+
+        if (savedInstanceState == null) {
+
+            Bundle extras = getIntent().getExtras();
+
+            if(extras == null) {
+
+                usernameFromSignInOrUserRole = null;
+
+            } else {
+
+                usernameFromSignInOrUserRole = extras.getString("USERNAME_FROM_SIGNIN_OR_USERROLE");
+
+            }
+
+        } else {
+
+            usernameFromSignInOrUserRole = (String) savedInstanceState.getSerializable("USERNAME_FROM_SIGNIN_OR_USERROLE");
+
+        }
+
     }
 }

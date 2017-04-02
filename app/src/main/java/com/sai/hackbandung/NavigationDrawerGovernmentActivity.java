@@ -25,7 +25,9 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.NavigationDrawerGovernmentActivity_TITLE);
         setContentView(R.layout.activity_navigation_drawer_government);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

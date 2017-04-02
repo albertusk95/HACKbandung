@@ -53,6 +53,7 @@ public class GovernmentAgencyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.GovernmentAgencyActivity_TITLE);
         setContentView(R.layout.activity_government_agency);
 
         // initialize the database

@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sai.hackbandung.DatabaseClass.CitizensInfo;
+import com.sai.hackbandung.DatabaseClass.GovernmentInfo;
 
 import static android.content.ContentValues.TAG;
 
@@ -41,6 +42,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle(R.string.SignInActivity_TITLE);
         setContentView(R.layout.activity_sign_in);
 
         // initialize firebase realtime database
@@ -75,30 +77,6 @@ public class SignInActivity extends AppCompatActivity {
                 // user authentication
                 authenticateUser();
 
-                if (isUserAuthenticated == 1) {
-
-                    // valid access
-                    Toast.makeText(getApplicationContext(), "Login success", Toast.LENGTH_SHORT).show();
-
-                    // redirect to the main page
-                    if (userRole.equals("citizens")) {
-
-                        SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class));
-
-                    } else {
-
-                        SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class));
-
-                    }
-
-                } else {
-
-                    // invalid access
-                    Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
-                    return;
-
-                }
-
             }
 
         });
@@ -118,25 +96,26 @@ public class SignInActivity extends AppCompatActivity {
     private void authenticateUser() {
 
         DatabaseReference myRef = database.getReference();
+
+        // CHECK FOR CITIZENS
         myRef.child("CITIZENS").addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 int userAuthenticationStatus = 0;
+                String usernameToBeSent = "";
 
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
                     CitizensInfo ci = noteDataSnapshot.getValue(CitizensInfo.class);
 
-                    if (ci.getEmail().equals(email) && ci.getPassword().equals(password)) {
+                    if (ci.email.equals(email) && ci.password.equals(password)) {
 
                         // set the authentication status
                         userAuthenticationStatus = 1;
-
-                        // set the user role
-                        userRole = ci.getUserRole();
-
+                        userRole = "citizens";
+                        usernameToBeSent = ci.username;
                         break;
                     }
 
@@ -144,17 +123,109 @@ public class SignInActivity extends AppCompatActivity {
 
                 isUserAuthenticated = userAuthenticationStatus;
 
+                if (isUserAuthenticated == 1) {
+
+                    // valid access
+                    Toast.makeText(getApplicationContext(), "Login success", Toast.LENGTH_SHORT).show();
+
+                    // redirect to the main page
+                    if (userRole.equals("citizens")) {
+
+                        Intent intentForNavDrawerCitizens = new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class);
+
+                        intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameToBeSent);
+
+                        SignInActivity.this.startActivity(intentForNavDrawerCitizens);
+
+                    } else {
+
+                        SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class));
+
+                    }
+
+                } else {
+
+                    // invalid access
+                    Toast.makeText(getApplicationContext(), "Login check for citizens failed", Toast.LENGTH_SHORT).show();
+
+                }
+
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.e(TAG, "onCancelled userAuthentication login", databaseError.toException());
+                Log.e(TAG, "onCancelled userAuthentication citizens login", databaseError.toException());
             }
 
         });
 
-        Log.d("AndroidBash", "authenticate user for login complete");
+        if (isUserAuthenticated == 0) {
 
+            // CHECK FOR GOVERNMENT
+            myRef.child("GOVERNMENT").addValueEventListener(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    int userAuthenticationStatus = 0;
+                    String usernameToBeSent = "";
+
+                    for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
+
+                        GovernmentInfo gi = noteDataSnapshot.getValue(GovernmentInfo.class);
+
+                        if (gi.email.equals(email) && gi.password.equals(password)) {
+
+                            // set the authentication status
+                            userAuthenticationStatus = 1;
+                            userRole = "government";
+                            usernameToBeSent = gi.username;
+                            break;
+                        }
+
+                    }
+
+                    isUserAuthenticated = userAuthenticationStatus;
+
+                    if (isUserAuthenticated == 1) {
+
+                        // valid access
+                        Toast.makeText(getApplicationContext(), "Login success", Toast.LENGTH_SHORT).show();
+
+                        // redirect to the main page
+                        if (userRole.equals("citizens")) {
+
+                            Intent intentForNavDrawerCitizens = new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class);
+
+                            intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameToBeSent);
+
+                            SignInActivity.this.startActivity(intentForNavDrawerCitizens);
+
+                        } else {
+
+                            SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class));
+
+                        }
+
+                    } else {
+
+                        // invalid access
+                        Toast.makeText(getApplicationContext(), "Login check for government failed", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    Log.e(TAG, "onCancelled userAuthentication government login", databaseError.toException());
+                }
+
+            });
+
+        }
+
+        Log.d("AndroidBash", "authenticate user for login complete");
 
     }
 

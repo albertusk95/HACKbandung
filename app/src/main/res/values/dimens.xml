@@ -21,6 +21,10 @@
     <dimen name="activity_userrole_title">36dp</dimen>
     <dimen name="activity_userrole_button_citizens">16dp</dimen>
     <dimen name="activity_userrole_button_government">16dp</dimen>
+
+    <!-- WRITE A NEW REPORT -->
+    <dimen name="write_a_new_report_citizens">18dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>

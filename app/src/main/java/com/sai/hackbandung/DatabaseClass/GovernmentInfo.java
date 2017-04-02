@@ -6,23 +6,36 @@ package com.sai.hackbandung.DatabaseClass;
 
 public class GovernmentInfo {
 
+    /*
     private String username;
     private String email;
     private String password;
-    private String full_name;
-    private String agency_type;
+    private String fullname;
+    private String agencytype;
+    */
 
-    public GovernmentInfo(String username, String email, String password, String full_name, String agency_type) {
+    public String username;
+    public String email;
+    public String password;
+    public String fullname;
+    public String agencytype;
+
+    public GovernmentInfo() {
+
+    }
+
+    public GovernmentInfo(String username, String email, String password, String fullname, String agencytype) {
 
         this.username = username;
         this.email = email;
         this.password = password;
-        this.full_name = full_name;
-        this.agency_type = agency_type;
+        this.fullname = fullname;
+        this.agencytype = agencytype;
 
     }
 
     // SETTER
+    /*
     public void setUsername(String username) {
         this.username = username;
     }
@@ -35,12 +48,12 @@ public class GovernmentInfo {
         this.password = password;
     }
 
-    public  void setFullName(String full_name) {
-        this.full_name = full_name;
+    public  void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
-    public void setAgencyType(String agency_type) {
-        this.agency_type = agency_type;
+    public void setAgencytype(String agencytype) {
+        this.agencytype = agencytype;
     }
 
     // GETTER
@@ -56,12 +69,13 @@ public class GovernmentInfo {
         return password;
     }
 
-    public String getFullName() {
-        return full_name;
+    public String getFullname() {
+        return fullname;
     }
 
-    public String getAgencyTpe() {
-        return agency_type;
+    public String getAgencytype() {
+        return agencytype;
     }
+    */
 
 }

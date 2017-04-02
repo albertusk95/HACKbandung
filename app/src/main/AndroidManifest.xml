@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sai.hackbandung">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +30,10 @@
             android:name=".NavigationDrawerGovernmentActivity"
             android:label="@string/title_activity_navigation_drawer_government"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".GovernmentAgencyActivity"></activity>
+        <activity android:name=".GovernmentAgencyActivity" />
+        <activity android:name=".CompleteDetailActivity" />
+        <activity android:name=".WIPConfirmationActivity" />
+        <activity android:name=".CompletionReportByAgencyActivity"></activity>
     </application>
 
 </manifest>

@@ -252,7 +252,7 @@ public class SignUpActivity extends AppCompatActivity {
                         intentForUserRole.putExtra("PASSWORD_FROM_SIGNUP", password);
                         intentForUserRole.putExtra("FULLNAME_FROM_SIGNUP", full_name);
 
-                        Toast.makeText(SignUpActivity.this, "Regstration success", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(SignUpActivity.this, "Regstration success", Toast.LENGTH_LONG).show();
 
                         SignUpActivity.this.startActivity(intentForUserRole);
 

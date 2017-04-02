@@ -68,6 +68,7 @@ public class WriteANewReportCitizens extends Fragment {
     String address;
     String userRole;
     String username;
+    String fullname;
     String status;
     String userMessage;
 
@@ -79,6 +80,7 @@ public class WriteANewReportCitizens extends Fragment {
     private DatabaseReference mDatabase;
 
     private String usernameFromNAVDRAWCITIZENS;
+    private String fullnameFromNAVDRAWCITIZENS;
 
     private static final int CAMERA_REQUEST = 1888;
 
@@ -104,6 +106,7 @@ public class WriteANewReportCitizens extends Fragment {
 
         // get argument that passed from activity in "USERNAME_FROM_NAVDRAWERCITIZENS" key value
         usernameFromNAVDRAWCITIZENS = getArguments().getString("USERNAME_FROM_NAVDRAWERCITIZENS");
+        fullnameFromNAVDRAWCITIZENS = getArguments().getString("FULLNAME_FROM_NAVDRAWERCITIZENS");
 
         buttonTakeAPhoto.setOnClickListener(new View.OnClickListener() {
 
@@ -268,6 +271,7 @@ public class WriteANewReportCitizens extends Fragment {
         address = "Not Assigned";
         userRole = "citizens";
         username = usernameFromNAVDRAWCITIZENS;
+        fullname = fullnameFromNAVDRAWCITIZENS;
         status = "waiting";
         userMessage = editTextReport.getText().toString().trim();
         imgREF_AFTER_COMPLETED = null;
@@ -290,6 +294,8 @@ public class WriteANewReportCitizens extends Fragment {
 
 
         imgREF = System.currentTimeMillis();
+
+        final String REPORT_ID = String.valueOf(imgREF);
 
         StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + imgREF + ".jpg");
 
@@ -325,14 +331,15 @@ public class WriteANewReportCitizens extends Fragment {
                 // - status (all, WIP, done)
                 // - message
 
-                ReportInfo uploadReport = new ReportInfo(imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, responsibleAgency, address,
-                                                        userRole, username, status, userMessage);
+                ReportInfo uploadReport = new ReportInfo(REPORT_ID, imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, responsibleAgency, address,
+                                                        userRole, username, fullname, status, userMessage);
 
 
                 // adding an upload to firebase database
-                String uploadId = mDatabase.push().getKey();
-                mDatabase.child(uploadId).setValue(uploadReport);
+                //String uploadId = mDatabase.push().getKey();
+                //mDatabase.child(uploadId).setValue(uploadReport);
 
+                mDatabase.child(REPORT_ID).setValue(uploadReport);
 
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

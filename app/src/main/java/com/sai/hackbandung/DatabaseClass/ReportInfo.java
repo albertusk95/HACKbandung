@@ -9,6 +9,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class ReportInfo {
 
+    public String REPORT_ID;
 	public Long imgREF;
     public Long imgREF_AFTER_COMPLETED;
 	public String topic;
@@ -17,6 +18,7 @@ public class ReportInfo {
 	public String address;
 	public String userRole;
 	public String username;
+    public String fullname;
 	public String status;
     public String userMessage;
 	
@@ -25,9 +27,10 @@ public class ReportInfo {
     public ReportInfo() {
     }
 
-    public ReportInfo(Long imgREF, Long imgREF_AFTER_COMPLETED, String topic, String postingDate, String responsibleAgency, String address,
-                      String userRole, String username, String status, String userMessage) {
+    public ReportInfo(String REPORT_ID, Long imgREF, Long imgREF_AFTER_COMPLETED, String topic, String postingDate, String responsibleAgency, String address,
+                      String userRole, String username, String fullname, String status, String userMessage) {
 
+        this.REPORT_ID = REPORT_ID;
         this.imgREF = imgREF;
         this.imgREF_AFTER_COMPLETED = imgREF_AFTER_COMPLETED;
         this.topic = topic;
@@ -36,6 +39,7 @@ public class ReportInfo {
         this.address = address;
         this.userRole = userRole;
         this.username = username;
+        this.fullname = fullname;
         this.status = status;
         this.userMessage = userMessage;
 

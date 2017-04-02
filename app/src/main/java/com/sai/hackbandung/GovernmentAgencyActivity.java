@@ -70,13 +70,18 @@ public class GovernmentAgencyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Toast.makeText(GovernmentAgencyActivity.this, "You Clicked at " + web[+ position], Toast.LENGTH_SHORT).show();
+                Toast.makeText(GovernmentAgencyActivity.this, "Your role is " + web[+ position], Toast.LENGTH_SHORT).show();
 
                 // store the agency type in the DB
                 storeAgencyType(web[+ position]);
 
                 // redirect to the main page
-                GovernmentAgencyActivity.this.startActivity(new Intent(GovernmentAgencyActivity.this, NavigationDrawerGovernmentActivity.class));
+                Intent intentForNavDrawerGovernment = new Intent(GovernmentAgencyActivity.this, NavigationDrawerGovernmentActivity.class);
+
+                intentForNavDrawerGovernment.putExtra("USERNAME_FROM_SIGNIN_OR_AGENCY", usernameFromUserRole);
+                intentForNavDrawerGovernment.putExtra("FULLNAME_FROM_SIGNIN_OR_AGENCY", fullNameFromUserRole);
+
+                GovernmentAgencyActivity.this.startActivity(intentForNavDrawerGovernment);
 
             }
         });
@@ -120,8 +125,8 @@ public class GovernmentAgencyActivity extends AppCompatActivity {
 
         GovernmentInfo new_GI = new GovernmentInfo(usernameFromUserRole, emailFromUserRole, passwordFromUserRole, fullNameFromUserRole, agencyType);
 
-        DatabaseReference myRef = database.getReference("GOVERNMENT/" + usernameFromUserRole);
-        myRef.setValue(new_GI);
+        DatabaseReference myRef = database.getReference();
+        myRef.child("GOVERNMENT/" + usernameFromUserRole).setValue(new_GI);
 
     }
 

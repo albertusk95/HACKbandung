@@ -105,6 +105,7 @@ public class SignInActivity extends AppCompatActivity {
 
                 int userAuthenticationStatus = 0;
                 String usernameToBeSent = "";
+                String fullnameToBeSent = "";
 
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -114,8 +115,8 @@ public class SignInActivity extends AppCompatActivity {
 
                         // set the authentication status
                         userAuthenticationStatus = 1;
-                        userRole = "citizens";
                         usernameToBeSent = ci.username;
+                        fullnameToBeSent = ci.fullname;
                         break;
                     }
 
@@ -129,19 +130,12 @@ public class SignInActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Login success", Toast.LENGTH_SHORT).show();
 
                     // redirect to the main page
-                    if (userRole.equals("citizens")) {
+                    Intent intentForNavDrawerCitizens = new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class);
 
-                        Intent intentForNavDrawerCitizens = new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class);
+                    intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameToBeSent);
+                    intentForNavDrawerCitizens.putExtra("FULLNAME_FROM_SIGNIN_OR_USERROLE", fullnameToBeSent);
 
-                        intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameToBeSent);
-
-                        SignInActivity.this.startActivity(intentForNavDrawerCitizens);
-
-                    } else {
-
-                        SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class));
-
-                    }
+                    SignInActivity.this.startActivity(intentForNavDrawerCitizens);
 
                 } else {
 
@@ -169,6 +163,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     int userAuthenticationStatus = 0;
                     String usernameToBeSent = "";
+                    String fullnameToBeSent = "";
 
                     for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -178,8 +173,8 @@ public class SignInActivity extends AppCompatActivity {
 
                             // set the authentication status
                             userAuthenticationStatus = 1;
-                            userRole = "government";
                             usernameToBeSent = gi.username;
+                            fullnameToBeSent = gi.fullname;
                             break;
                         }
 
@@ -193,19 +188,12 @@ public class SignInActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Login success", Toast.LENGTH_SHORT).show();
 
                         // redirect to the main page
-                        if (userRole.equals("citizens")) {
+                        Intent intentForNavDrawerGovernment = new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class);
 
-                            Intent intentForNavDrawerCitizens = new Intent(SignInActivity.this, NavigationDrawerCitizensActivity.class);
+                        intentForNavDrawerGovernment.putExtra("USERNAME_FROM_SIGNIN_OR_AGENCY", usernameToBeSent);
+                        intentForNavDrawerGovernment.putExtra("FULLNAME_FROM_SIGNIN_OR_AGENCY", fullnameToBeSent);
 
-                            intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameToBeSent);
-
-                            SignInActivity.this.startActivity(intentForNavDrawerCitizens);
-
-                        } else {
-
-                            SignInActivity.this.startActivity(new Intent(SignInActivity.this, NavigationDrawerGovernmentActivity.class));
-
-                        }
+                        SignInActivity.this.startActivity(intentForNavDrawerGovernment);
 
                     } else {
 

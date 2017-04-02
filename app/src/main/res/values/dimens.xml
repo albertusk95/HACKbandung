@@ -25,6 +25,17 @@
     <!-- WRITE A NEW REPORT -->
     <dimen name="write_a_new_report_citizens">18dp</dimen>
 
+    <!-- COMPLETE DETAIL -->
+    <dimen name="activity_complete_detail_HANDLE_BY_LABEL">16dp</dimen>
+    <dimen name="activity_complete_detail_HANDLE_BY_VALUE">16dp</dimen>
+    <dimen name="activity_complete_detail_BEFORE_LABEL">16dp</dimen>
+    <dimen name="activity_complete_detail_AFTER_LABEL">16dp</dimen>
+
+    <!-- COMPLETION TIME -->
+    <dimen name="activity_completion_report_FINISH_TIME_LABEL">16dp</dimen>
+    <dimen name="activity_completion_report_BEFORE_LABEL">16dp</dimen>
+    <dimen name="activity_completion_report_AFTER_LABEL">16dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>

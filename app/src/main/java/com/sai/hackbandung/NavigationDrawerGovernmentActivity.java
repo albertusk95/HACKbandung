@@ -14,13 +14,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.sai.hackbandung.Fragments.AllReportsGovernment;
 import com.sai.hackbandung.Fragments.CompletedReportsGovernment;
 import com.sai.hackbandung.Fragments.InProgressReportsGovernment;
 
-public class NavigationDrawerGovernmentActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationDrawerGovernmentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private String usernameFromSignInOrAgency;
+    private String fullnameFromSignInOrAgency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,14 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        // retrieve intent data from User Role Activity
+        retrieveIntentData(savedInstanceState);
+
+        Toast.makeText(NavigationDrawerGovernmentActivity.this, "username from signin or agency: " + usernameFromSignInOrAgency, Toast.LENGTH_LONG).show();
+        Toast.makeText(NavigationDrawerGovernmentActivity.this, "fullname from signin or agency: " + fullnameFromSignInOrAgency, Toast.LENGTH_LONG).show();
+
     }
 
     @Override
@@ -90,6 +101,9 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity
             case R.id.nav_COMPLETED_REPORTS:
                 fragment = new CompletedReportsGovernment();
                 break;
+            default:
+                fragment = new AllReportsGovernment();
+                break;
         }
 
         if (fragment != null){
@@ -102,4 +116,31 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void retrieveIntentData(Bundle savedInstanceState) {
+
+        if (savedInstanceState == null) {
+
+            Bundle extras = getIntent().getExtras();
+
+            if(extras == null) {
+
+                usernameFromSignInOrAgency = null;
+                fullnameFromSignInOrAgency = null;
+
+            } else {
+
+                usernameFromSignInOrAgency = extras.getString("USERNAME_FROM_SIGNIN_OR_AGENCY");
+                fullnameFromSignInOrAgency = extras.getString("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+
+            }
+
+        } else {
+
+            usernameFromSignInOrAgency = (String) savedInstanceState.getSerializable("USERNAME_FROM_SIGNIN_OR_AGENCY");
+            fullnameFromSignInOrAgency = (String) savedInstanceState.getSerializable("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+        }
+
+    }
+
 }

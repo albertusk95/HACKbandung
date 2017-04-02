@@ -57,6 +57,7 @@ public class UserRoleActivity extends AppCompatActivity {
                 Intent intentForNavDrawerCitizens = new Intent(UserRoleActivity.this, NavigationDrawerCitizensActivity.class);
 
                 intentForNavDrawerCitizens.putExtra("USERNAME_FROM_SIGNIN_OR_USERROLE", usernameFromSignUp);
+                intentForNavDrawerCitizens.putExtra("FULLNAME_FROM_SIGNIN_OR_USERROLE", fullNameFromSignUp);
 
                 UserRoleActivity.this.startActivity(intentForNavDrawerCitizens);
 

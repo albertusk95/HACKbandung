@@ -52,6 +52,18 @@
     <string name="buttonWriteANewReportActivity_SEND">Send</string>
     <string name="textViewWriteANewReportActivity_TOPIC">Topic:</string>
 
+    <!-- COMPLETE DETAIL -->
+    <string name="textViewCompleteDetailActivity_HANDLE_BY_LABEL">Handled by</string>
+    <string name="textViewCompleteDetailActivity_HANDLE_BY_VALUE">value</string>
+    <string name="textViewCompleteDetailActivity_BEFORE_LABEL">Before</string>
+    <string name="textViewCompleteDetailActivity_AFTER_LABEL">After</string>
+
+    <!-- COMPLETION REPORT -->
+    <string name="textViewCompletionReportActivity_FINISH_TIME_LABEL">Finish time</string>
+    <string name="textViewCompletionTimeActivity_FINISH_TIME_VALUE">value</string>
+    <string name="textViewCompletionReportActivity_BEFORE_LABEL">Before</string>
+    <string name="textViewCompletionReportActivity_AFTER_LABEL">After</string>
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_navigation_drawer_citizens">NavigationDrawerCitizensActivity</string>
     <string name="title_activity_navigation_drawer_government">NavigationDrawerGovernmentActivity</string>

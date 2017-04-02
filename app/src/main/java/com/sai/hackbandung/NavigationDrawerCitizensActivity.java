@@ -25,6 +25,7 @@ import com.sai.hackbandung.Fragments.WriteANewReportCitizens;
 public class NavigationDrawerCitizensActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private String usernameFromSignInOrUserRole;
+    private String fullnameFromSignIOrUserRole;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +48,8 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
         // retrieve intent data from User Role Activity
         retrieveIntentData(savedInstanceState);
 
-        Toast.makeText(NavigationDrawerCitizensActivity.this, "intent from user role: " + usernameFromSignInOrUserRole, Toast.LENGTH_LONG).show();
+        //Toast.makeText(NavigationDrawerCitizensActivity.this, "username from signin or userrole: " + usernameFromSignInOrUserRole, Toast.LENGTH_LONG).show();
+        //Toast.makeText(NavigationDrawerCitizensActivity.this, "fullname from signin or userrole: " + fullnameFromSignIOrUserRole, Toast.LENGTH_LONG).show();
 
     }
 
@@ -96,6 +98,7 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
         // Use bundle to pass data
         Bundle data = new Bundle();
         data.putString("USERNAME_FROM_NAVDRAWERCITIZENS", usernameFromSignInOrUserRole);
+        data.putString("FULLNAME_FROM_NAVDRAWERCITIZENS", fullnameFromSignIOrUserRole);
 
         switch (id){
             case R.id.nav_WRITE_A_NEW_REPORT:
@@ -116,6 +119,10 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
                 break;
             case R.id.nav_COMPLETED_REPORTS:
                 fragment = new CompletedReportsCitizens();
+                fragment.setArguments(data);
+                break;
+            default:
+                fragment = new WriteANewReportCitizens();
                 fragment.setArguments(data);
                 break;
         }
@@ -142,17 +149,19 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
             if(extras == null) {
 
                 usernameFromSignInOrUserRole = null;
+                fullnameFromSignIOrUserRole = null;
 
             } else {
 
                 usernameFromSignInOrUserRole = extras.getString("USERNAME_FROM_SIGNIN_OR_USERROLE");
+                fullnameFromSignIOrUserRole = extras.getString("FULLNAME_FROM_SIGNIN_OR_USERROLE");
 
             }
 
         } else {
 
             usernameFromSignInOrUserRole = (String) savedInstanceState.getSerializable("USERNAME_FROM_SIGNIN_OR_USERROLE");
-
+            fullnameFromSignIOrUserRole = (String) savedInstanceState.getSerializable("FULLNAME_FROM_SIGNIN_OR_USERROLE");
         }
 
     }

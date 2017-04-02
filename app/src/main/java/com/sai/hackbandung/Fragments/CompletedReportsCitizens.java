@@ -65,8 +65,6 @@ public class CompletedReportsCitizens extends Fragment {
 
         progressDialog = new ProgressDialog(getActivity());
 
-        reportInfos = new ArrayList<>();
-
         // get argument that passed from activity in "USERNAME_FROM_NAVDRAWERCITIZENS" key value
         usernameFromNAVDRAWCITIZENS = getArguments().getString("USERNAME_FROM_NAVDRAWERCITIZENS");
 
@@ -97,6 +95,8 @@ public class CompletedReportsCitizens extends Fragment {
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
+
+                reportInfos = new ArrayList<>();
 
                 // get all data having the corresponding username and status COMPLETED
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {

@@ -20,10 +20,14 @@ public class CompleteDetailActivity extends AppCompatActivity {
     String agency;
     Long imgREF;
     Long imgREF_AFTER_COMPLETED;
+    String postingDate;
+    String finishDate;
 
     TextView textView_HandledBy;
     ImageView imageView_imgREF;
     ImageView imageView_imgREF_AFTER_COMPLETED;
+    TextView textViewCompleteDetailActivity_START_TIME_VALUE;
+    TextView textViewCompleteDetailActivity_FINISH_TIME_VALUE;
 
     private StorageReference storageReference;
 
@@ -34,7 +38,7 @@ public class CompleteDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_complete_detail);
 
         // retrieve the username from signup
-        retrieveDataFromSignup(savedInstanceState);
+        retrieveDataFromAdapterCompleted(savedInstanceState);
 
         Toast.makeText(this, "Intent CDA: " + agency + " : " + imgREF + " : " + imgREF_AFTER_COMPLETED, Toast.LENGTH_LONG).show();
 
@@ -42,6 +46,9 @@ public class CompleteDetailActivity extends AppCompatActivity {
         textView_HandledBy = (TextView) findViewById(R.id.textViewCompleteDetailActivity_HANDLE_BY_VALUE);
         imageView_imgREF = (ImageView) findViewById(R.id.imageViewVerification_BEFORE);
         imageView_imgREF_AFTER_COMPLETED = (ImageView) findViewById(R.id.imageViewVerification_AFTER);
+        textViewCompleteDetailActivity_START_TIME_VALUE = (TextView) findViewById(R.id.textViewCompleteDetailActivity_START_TIME_VALUE);
+        textViewCompleteDetailActivity_FINISH_TIME_VALUE = (TextView) findViewById(R.id.textViewCompleteDetailActivity_FINISH_TIME_VALUE);
+
 
         // set value to the views
         setValueToViews();
@@ -80,7 +87,7 @@ public class CompleteDetailActivity extends AppCompatActivity {
         });
 
         // image verification AFTER
-        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_COMPLETE + imageView_imgREF_AFTER_COMPLETED + ".jpg");
+        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_UPLOADS + imageView_imgREF_AFTER_COMPLETED + ".jpg");
 
         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
@@ -103,9 +110,15 @@ public class CompleteDetailActivity extends AppCompatActivity {
             }
         });
 
+        // start date
+        textViewCompleteDetailActivity_START_TIME_VALUE.setText(postingDate);
+
+        // finish date
+        textViewCompleteDetailActivity_FINISH_TIME_VALUE.setText(finishDate);
+
     }
 
-    private void retrieveDataFromSignup(Bundle savedInstanceState) {
+    private void retrieveDataFromAdapterCompleted(Bundle savedInstanceState) {
 
         if (savedInstanceState == null) {
 
@@ -116,12 +129,16 @@ public class CompleteDetailActivity extends AppCompatActivity {
                 agency = null;
                 imgREF = null;
                 imgREF_AFTER_COMPLETED = null;
+                postingDate = null;
+                finishDate = null;
 
             } else {
 
                 agency = extras.getString("COMPLETED_AGENCY");
                 imgREF = extras.getLong("COMPLETED_IMAGE_BEFORE");
                 imgREF_AFTER_COMPLETED = extras.getLong("COMPLETED_IMAGE_AFTER");
+                postingDate = extras.getString("COMPLETED_POSTING_DATE");
+                finishDate = extras.getString("COMPLETED_FINISH_DATE");
 
             }
 
@@ -130,6 +147,9 @@ public class CompleteDetailActivity extends AppCompatActivity {
             agency = (String) savedInstanceState.getSerializable("COMPLETED_AGENCY");
             imgREF = (Long) savedInstanceState.getSerializable("COMPLETED_IMAGE_BEFORE");
             imgREF_AFTER_COMPLETED = (Long) savedInstanceState.getSerializable("COMPLETE_IMAGE_AFTER");
+            postingDate = (String) savedInstanceState.getSerializable("COMPLETED_POSTING_DATE");
+            finishDate = (String) savedInstanceState.getSerializable("COMPLETED_FINISH_DATE");
+
         }
 
     }

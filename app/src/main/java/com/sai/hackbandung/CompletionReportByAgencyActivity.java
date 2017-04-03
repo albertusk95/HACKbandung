@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,6 +26,8 @@ import com.sai.hackbandung.Constants.Constants;
 import com.sai.hackbandung.DatabaseClass.ReportInfo;
 
 import java.io.ByteArrayOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CompletionReportByAgencyActivity extends AppCompatActivity {
 
@@ -32,6 +35,9 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
     Button buttonSubmit;
     ImageView imageViewVerification_BEFORE;
     ImageView imageViewVerification_AFTER;
+    TextView textViewCompletionTime_START_TIME_VALUE;
+    TextView textViewCompletionTime_FINISH_TIME_VALUE;
+
 
     private String REPORT_ID;
     private Long imgREF;
@@ -46,6 +52,8 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
     private String status;
     private String userMessage;
 
+    private String finishTime;
+
     // Reference to an image file in Firebase Storage
     private StorageReference storageReference;
     private DatabaseReference mDatabase;
@@ -58,7 +66,7 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
         setTitle("Completion Report");
         setContentView(R.layout.activity_completion_report_by_agency);
 
-        storageReference = FirebaseStorage.getInstance().getReference();
+        storageReference = FirebaseStorage.getInstance().getReference(Constants.STORAGE_PATH_UPLOADS);
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
         // retrieve intent data
@@ -69,6 +77,9 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
         buttonSubmit = (Button) findViewById(R.id.buttonSubmit);
         imageViewVerification_BEFORE = (ImageView) findViewById(R.id.imageViewVerification_BEFORE);
         imageViewVerification_AFTER = (ImageView) findViewById(R.id.imageViewVerification_AFTER);
+        textViewCompletionTime_START_TIME_VALUE = (TextView) findViewById(R.id.textViewCompletionTime_START_TIME_VALUE);
+        textViewCompletionTime_FINISH_TIME_VALUE = (TextView) findViewById(R.id.textViewCompletionTime_FINISH_TIME_VALUE);
+
 
         buttonTakePhoto.setOnClickListener(new View.OnClickListener() {
 
@@ -147,6 +158,24 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
             }
         });
 
+        // start date
+        textViewCompletionTime_START_TIME_VALUE.setText(postingDate);
+
+        // finish date (get current date and time)
+        finishTime = getFinishDate();
+        textViewCompletionTime_FINISH_TIME_VALUE.setText(finishTime);
+
+    }
+
+    private String getFinishDate() {
+
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+
+        return formattedDate;
+
     }
 
     private void retrieveIntentData(Bundle savedInstanceState) {
@@ -162,6 +191,7 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
                 imgREF_AFTER_COMPLETED = null;
                 topic = null;
                 postingDate = null;
+                finishTime = null;
                 responsibleAgency = null;
                 address = null;
                 userRole = null;
@@ -174,16 +204,17 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
 
                 REPORT_ID = extras.getString("COMPLETION_DONE_REPORT_ID");
                 imgREF = extras.getLong("COMPLETION_DONE_IMG_REF");
-                imgREF_AFTER_COMPLETED = extras.getLong("CCOMPLETION_DONE_IMG_REF_AFTER_COMPLETED");
+                imgREF_AFTER_COMPLETED = extras.getLong("COMPLETION_DONE_IMG_REF_AFTER_COMPLETED");
                 topic = extras.getString("COMPLETION_DONE_TOPIC");
-                postingDate = extras.getString("CCOMPLETION_DONE_POSTING_DATE");
+                postingDate = extras.getString("COMPLETION_DONE_POSTING_DATE");
+                finishTime = extras.getString("COMPLETION_DONE_FINISH_DATE");
                 responsibleAgency = extras.getString("COMPLETION_DONE_RESPONSIBLE_AGENCY");
                 address = extras.getString("COMPLETION_DONE_ADDRESS");
                 userRole = extras.getString("COMPLETION_DONE_USER_ROLE");
                 username = extras.getString("COMPLETION_DONE_USERNAME");
                 fullname = extras.getString("COMPLETION_DONE_FULLNAME");
                 status = extras.getString("COMPLETION_DONE_STATUS");
-                userMessage = extras.getString("CCOMPLETION_DONE_USER_MESSAGE");
+                userMessage = extras.getString("COMPLETION_DONE_USER_MESSAGE");
 
             }
 
@@ -192,8 +223,9 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
             REPORT_ID = (String) savedInstanceState.getSerializable("COMPLETION_DONE_REPORT_ID");
             imgREF = (Long) savedInstanceState.getSerializable("COMPLETION_DONE_IMG_REF");
             imgREF_AFTER_COMPLETED = (Long) savedInstanceState.getSerializable("COMPLETION_DONE_IMG_REF_AFTER_COMPLETED");
-            topic = (String) savedInstanceState.getSerializable("COMPLETION_DONEP_TOPIC");
+            topic = (String) savedInstanceState.getSerializable("COMPLETION_DONE_TOPIC");
             postingDate = (String) savedInstanceState.getSerializable("COMPLETION_DONE_POSTING_DATE");
+            finishTime = (String) savedInstanceState.getSerializable("COMPLETION_DONE_FINISH_DATE");
             responsibleAgency = (String) savedInstanceState.getSerializable("COMPLETION_DONE_RESPONSIBLE_AGENCY");
             address = (String) savedInstanceState.getSerializable("COMPLETION_DONE_ADDRESS");
             userRole = (String) savedInstanceState.getSerializable("COMPLETION_DONE_USER_ROLE");
@@ -227,7 +259,7 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
 
         imgREF_AFTER_COMPLETED = System.currentTimeMillis();
 
-        StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_COMPLETE + imgREF_AFTER_COMPLETED + ".jpg");
+        StorageReference sRef = storageReference.child(imgREF_AFTER_COMPLETED + ".jpg");
 
         UploadTask uploadTask = sRef.putBytes(data);
 
@@ -261,7 +293,9 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
                 // - status (all, WIP, done)
                 // - message
 
-                ReportInfo uploadReport = new ReportInfo(REPORT_ID, imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, responsibleAgency, address,
+                // FINISH DATE !!!
+
+                ReportInfo uploadReport = new ReportInfo(REPORT_ID, imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, finishTime, responsibleAgency, address,
                         userRole, username, fullname, status, userMessage);
 
 

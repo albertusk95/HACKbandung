@@ -165,6 +165,8 @@ public class MyAdapterCompleted extends RecyclerView.Adapter<MyAdapterCompleted.
                     intent.putExtra("COMPLETED_AGENCY", reportInfos.get(getAdapterPosition()).responsibleAgency);
                     intent.putExtra("COMPLETED_IMAGE_BEFORE", reportInfos.get(getAdapterPosition()).imgREF);
                     intent.putExtra("COMPLETED_IMAGE_AFTER", reportInfos.get(getAdapterPosition()).imgREF_AFTER_COMPLETED);
+                    intent.putExtra("COMPLETED_POSTING_DATE", reportInfos.get(getAdapterPosition()).postingDate);
+                    intent.putExtra("COMPLETED_FINISH_DATE", reportInfos.get(getAdapterPosition()).finishDate);
 
                     v.getContext().startActivity(intent);
 

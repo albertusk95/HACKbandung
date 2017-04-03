@@ -14,6 +14,7 @@ public class ReportInfo {
     public Long imgREF_AFTER_COMPLETED;
 	public String topic;
 	public String postingDate;
+    public String finishDate;
 	public String responsibleAgency;
 	public String address;
 	public String userRole;
@@ -27,7 +28,7 @@ public class ReportInfo {
     public ReportInfo() {
     }
 
-    public ReportInfo(String REPORT_ID, Long imgREF, Long imgREF_AFTER_COMPLETED, String topic, String postingDate, String responsibleAgency, String address,
+    public ReportInfo(String REPORT_ID, Long imgREF, Long imgREF_AFTER_COMPLETED, String topic, String postingDate, String finishDate, String responsibleAgency, String address,
                       String userRole, String username, String fullname, String status, String userMessage) {
 
         this.REPORT_ID = REPORT_ID;
@@ -35,6 +36,7 @@ public class ReportInfo {
         this.imgREF_AFTER_COMPLETED = imgREF_AFTER_COMPLETED;
         this.topic = topic;
         this.postingDate = postingDate;
+        this.finishDate = finishDate;
         this.responsibleAgency = responsibleAgency;
         this.address = address;
         this.userRole = userRole;

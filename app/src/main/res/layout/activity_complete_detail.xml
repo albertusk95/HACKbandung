@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_complete_detail"
@@ -9,92 +10,187 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.sai.hackbandung.CompleteDetailActivity">
+-->
 
-    <TextView
-        android:id="@+id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:textStyle="bold"
-        android:textSize="@dimen/activity_complete_detail_HANDLE_BY_LABEL"
-        android:text="@string/textViewCompleteDetailActivity_HANDLE_BY_LABEL" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_complete_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.sai.hackbandung.CompleteDetailActivity">
 
-    <TextView
-        android:id="@+id/textViewCompleteDetailActivity_HANDLE_BY_VALUE"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:layout_toRightOf="@id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
-        android:textSize="@dimen/activity_complete_detail_HANDLE_BY_VALUE"
-        android:text="@string/textViewCompleteDetailActivity_HANDLE_BY_VALUE" />
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:stretchColumns="1">
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cardViewBefore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
-        android:padding="8dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp">
+        <RelativeLayout>
 
             <TextView
-                android:id="@+id/textViewCompleteDetailActivity_BEFORE_LABEL"
+                android:id="@+id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:textStyle="bold"
+                android:textSize="@dimen/activity_complete_detail_HANDLE_BY_LABEL"
+                android:text="@string/textViewCompleteDetailActivity_HANDLE_BY_LABEL" />
+
+            <TextView
+                android:id="@+id/textViewCompleteDetailActivity_HANDLE_BY_VALUE"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="@dimen/activity_complete_detail_BEFORE_LABEL"
-                android:text="@string/textViewCompleteDetailActivity_BEFORE_LABEL" />
+                android:layout_margin="12dp"
+                android:layout_toRightOf="@id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
+                android:textSize="@dimen/activity_complete_detail_HANDLE_BY_VALUE"
+                android:text="@string/textViewCompleteDetailActivity_HANDLE_BY_VALUE" />
 
-
-            <ImageView
-                android:id="@+id/imageViewVerification_BEFORE"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewBefore"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginBottom="12dp"
-                android:layout_below="@id/textViewCompleteDetailActivity_BEFORE_LABEL"/>
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_below="@id/textViewCompleteDetailActivity_HANDLE_BY_LABEL"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp">
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_BEFORE_LABEL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/activity_complete_detail_BEFORE_LABEL"
+                        android:text="@string/textViewCompleteDetailActivity_BEFORE_LABEL" />
+
+
+                    <ImageView
+                        android:id="@+id/imageViewVerification_BEFORE"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_below="@id/textViewCompleteDetailActivity_BEFORE_LABEL"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewAfter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_below="@id/cardViewBefore"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp">
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_AFTER_LABEL"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="@string/textViewCompleteDetailActivity_AFTER_LABEL" />
+
+
+                    <ImageView
+                        android:id="@+id/imageViewVerification_AFTER"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginBottom="12dp"
+                        android:layout_below="@id/textViewCompleteDetailActivity_AFTER_LABEL"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_below="@id/cardViewAfter"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp">
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_PERIOD_OF_WORK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="Period of Work" />
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_START_TIME_LABEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:layout_below="@id/textViewCompleteDetailActivity_PERIOD_OF_WORK"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="Start" />
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_START_TIME_VALUE"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toRightOf="@id/textViewCompleteDetailActivity_START_TIME_LABEL"
+                        android:layout_below="@id/textViewCompleteDetailActivity_PERIOD_OF_WORK"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="Period of Work" />
+
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_FINISH_TIME_LABEL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:layout_below="@id/textViewCompleteDetailActivity_START_TIME_LABEL"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="Finish" />
+
+                    <TextView
+                        android:id="@+id/textViewCompleteDetailActivity_FINISH_TIME_VALUE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_toRightOf="@id/textViewCompleteDetailActivity_FINISH_TIME_LABEL"
+                        android:layout_below="@id/textViewCompleteDetailActivity_START_TIME_VALUE"
+                        android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
+                        android:text="Period of Work" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+    </TableLayout>
 
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@id/cardViewBefore"
-        android:padding="8dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="100dp">
-
-            <TextView
-                android:id="@+id/textViewCompleteDetailActivity_AFTER_LABEL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textSize="@dimen/activity_complete_detail_AFTER_LABEL"
-                android:text="@string/textViewCompleteDetailActivity_AFTER_LABEL" />
-
-
-            <ImageView
-                android:id="@+id/imageViewVerification_AFTER"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_marginBottom="12dp"
-                android:layout_below="@id/textViewCompleteDetailActivity_AFTER_LABEL"/>
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
-
-</RelativeLayout>
+</ScrollView>

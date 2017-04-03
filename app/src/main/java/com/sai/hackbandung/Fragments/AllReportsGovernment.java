@@ -6,10 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.EditText;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +51,12 @@ public class AllReportsGovernment extends Fragment {
     //list to hold all the uploaded images
     private List<ReportInfo> reportInfos;
 
+    private EditText editTextSearch;
+
+    private String usernameFromNAVDRAWGOVERNMENT;
+    private String fullnameFromNAVDRAWGOVERNMENT;
+    private String resAgencyFromNAVDRAWGOVERNMENT;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
@@ -55,15 +64,20 @@ public class AllReportsGovernment extends Fragment {
         // menambahkan layout
         v = inflater.inflate(R.layout.all_reports_government, container, false);
 
+        // search text
+        editTextSearch = (EditText) v.findViewById(R.id.search);
+
+        // get argument that passed from activity in "USERNAME_FROM_NAVDRAWERCITIZENS" key value
+        usernameFromNAVDRAWGOVERNMENT = getArguments().getString("USERNAME_FROM_NAVDRAWERGOVERNMENT");
+        fullnameFromNAVDRAWGOVERNMENT = getArguments().getString("FULLNAME_FROM_NAVDRAWERGOVERNMENT");
+        resAgencyFromNAVDRAWGOVERNMENT = getArguments().getString("RESAGENCY_FROM_NAVDRAWERGOVERNMENT");
 
         recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         progressDialog = new ProgressDialog(getActivity());
-
         reportInfos = new ArrayList<>();
-
 
         return v;
 
@@ -78,6 +92,46 @@ public class AllReportsGovernment extends Fragment {
         // retrieve report info from database
         retrieveRelevantReportInfo();
 
+        addTextListener();
+
+    }
+
+
+    public void addTextListener(){
+
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {}
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+
+                query = query.toString().toLowerCase();
+
+                final List<ReportInfo> filteredList = new ArrayList<>();
+
+                for (int i = 0; i < reportInfos.size(); i++) {
+
+                    final String text = reportInfos.get(i).userMessage.toLowerCase();
+
+                    if (text.contains(query)) {
+
+                        filteredList.add(reportInfos.get(i));
+
+                    }
+
+                }
+
+                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                adapter = new MyAdapterGovernment(getActivity().getApplicationContext(), filteredList);
+
+                ((MyAdapterGovernment)adapter).setAgency(resAgencyFromNAVDRAWGOVERNMENT);
+
+                recyclerView.setAdapter(adapter);
+                adapter.notifyDataSetChanged();  // data set changed
+            }
+        });
     }
 
 
@@ -106,6 +160,8 @@ public class AllReportsGovernment extends Fragment {
 
                 //creating adapter
                 adapter = new MyAdapterGovernment(getActivity().getApplicationContext(), reportInfos);
+
+                ((MyAdapterGovernment)adapter).setAgency(resAgencyFromNAVDRAWGOVERNMENT);
 
                 //adding adapter to recyclerview
                 recyclerView.setAdapter(adapter);

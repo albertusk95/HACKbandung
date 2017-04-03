@@ -64,6 +64,7 @@ public class WriteANewReportCitizens extends Fragment {
     // user input
     String topic;
     String postingDate;
+    String finishDate;
     String responsibleAgency;
     String address;
     String userRole;
@@ -267,6 +268,7 @@ public class WriteANewReportCitizens extends Fragment {
         // initialize user input
         topic = editTextTopic.getText().toString().trim();
         postingDate = getPostingDate();
+        finishDate = "Not Assigned";
         responsibleAgency = "Not Assigned";
         address = "Not Assigned";
         userRole = "citizens";
@@ -331,7 +333,7 @@ public class WriteANewReportCitizens extends Fragment {
                 // - status (all, WIP, done)
                 // - message
 
-                ReportInfo uploadReport = new ReportInfo(REPORT_ID, imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, responsibleAgency, address,
+                ReportInfo uploadReport = new ReportInfo(REPORT_ID, imgREF, imgREF_AFTER_COMPLETED, topic, postingDate, finishDate, responsibleAgency, address,
                                                         userRole, username, fullname, status, userMessage);
 
 

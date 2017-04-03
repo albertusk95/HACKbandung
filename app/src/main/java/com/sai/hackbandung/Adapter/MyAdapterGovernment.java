@@ -19,19 +19,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.sai.hackbandung.CompleteDetailActivity;
 import com.sai.hackbandung.CompletionReportByAgencyActivity;
 import com.sai.hackbandung.Constants.Constants;
 import com.sai.hackbandung.DatabaseClass.ReportInfo;
-import com.sai.hackbandung.MainActivity;
 import com.sai.hackbandung.R;
-import com.sai.hackbandung.WIPConfirmationActivity;
 
 import java.util.List;
 
@@ -44,6 +39,8 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
     private Context context;
     private List<ReportInfo> reportInfos;
 
+    private String resAgency;
+
     // Reference to an image file in Firebase Storage
     private StorageReference storageReference;
     private DatabaseReference mDatabase;
@@ -51,6 +48,10 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
     public MyAdapterGovernment(Context context, List<ReportInfo> reportInfos) {
         this.reportInfos = reportInfos;
         this.context = context;
+    }
+
+    public void setAgency(String resAgency) {
+        this.resAgency = resAgency;
     }
 
     @Override
@@ -161,6 +162,8 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
                 @Override
                 public void onClick(View v) {
 
+                    // change the status and the agency
+
                     String newStatus = "wip";
 
                     ReportInfo new_RI = new ReportInfo(reportInfos.get(getAdapterPosition()).REPORT_ID,
@@ -168,7 +171,8 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
                                                         reportInfos.get(getAdapterPosition()).imgREF_AFTER_COMPLETED,
                                                         reportInfos.get(getAdapterPosition()).topic,
                                                         reportInfos.get(getAdapterPosition()).postingDate,
-                                                        reportInfos.get(getAdapterPosition()).responsibleAgency,
+                                                        reportInfos.get(getAdapterPosition()).finishDate,
+                                                        resAgency,
                                                         reportInfos.get(getAdapterPosition()).address,
                                                         reportInfos.get(getAdapterPosition()).userRole,
                                                         reportInfos.get(getAdapterPosition()).username,
@@ -221,6 +225,7 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
                     intent.putExtra("COMPLETION_DONE_IMG_REF_AFTER_COMPLETED", reportInfos.get(getAdapterPosition()).imgREF_AFTER_COMPLETED);
                     intent.putExtra("COMPLETION_DONE_TOPIC", reportInfos.get(getAdapterPosition()).topic);
                     intent.putExtra("COMPLETION_DONE_POSTING_DATE", reportInfos.get(getAdapterPosition()).postingDate);
+                    intent.putExtra("COMPLETION_DONE_FINISH_DATE", reportInfos.get(getAdapterPosition()).finishDate);
                     intent.putExtra("COMPLETION_DONE_RESPONSIBLE_AGENCY", reportInfos.get(getAdapterPosition()).responsibleAgency);
                     intent.putExtra("COMPLETION_DONE_ADDRESS", reportInfos.get(getAdapterPosition()).address);
                     intent.putExtra("COMPLETION_DONE_USER_ROLE", reportInfos.get(getAdapterPosition()).userRole);

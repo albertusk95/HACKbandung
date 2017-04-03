@@ -32,8 +32,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".GovernmentAgencyActivity" />
         <activity android:name=".CompleteDetailActivity" />
-        <activity android:name=".WIPConfirmationActivity" />
-        <activity android:name=".CompletionReportByAgencyActivity"></activity>
+        <activity android:name=".CompletionReportByAgencyActivity" />
+        <activity android:name=".InProgressGovernmentDetail"></activity>
     </application>
 
 </manifest>

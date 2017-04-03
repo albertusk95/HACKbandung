@@ -164,6 +164,7 @@ public class SignInActivity extends AppCompatActivity {
                     int userAuthenticationStatus = 0;
                     String usernameToBeSent = "";
                     String fullnameToBeSent = "";
+                    String userAgency = "";
 
                     for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -175,6 +176,7 @@ public class SignInActivity extends AppCompatActivity {
                             userAuthenticationStatus = 1;
                             usernameToBeSent = gi.username;
                             fullnameToBeSent = gi.fullname;
+                            userAgency = gi.agencytype;
                             break;
                         }
 
@@ -192,6 +194,8 @@ public class SignInActivity extends AppCompatActivity {
 
                         intentForNavDrawerGovernment.putExtra("USERNAME_FROM_SIGNIN_OR_AGENCY", usernameToBeSent);
                         intentForNavDrawerGovernment.putExtra("FULLNAME_FROM_SIGNIN_OR_AGENCY", fullnameToBeSent);
+
+                        intentForNavDrawerGovernment.putExtra("RESAGENCY_FROM_SIGNIN_OR_AGENCY", userAgency);
 
                         SignInActivity.this.startActivity(intentForNavDrawerGovernment);
 

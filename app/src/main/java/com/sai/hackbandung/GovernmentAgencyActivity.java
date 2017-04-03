@@ -81,6 +81,8 @@ public class GovernmentAgencyActivity extends AppCompatActivity {
                 intentForNavDrawerGovernment.putExtra("USERNAME_FROM_SIGNIN_OR_AGENCY", usernameFromUserRole);
                 intentForNavDrawerGovernment.putExtra("FULLNAME_FROM_SIGNIN_OR_AGENCY", fullNameFromUserRole);
 
+                intentForNavDrawerGovernment.putExtra("RESAGENCY_FROM_SIGNIN_OR_AGENCY", web[+ position]);
+
                 GovernmentAgencyActivity.this.startActivity(intentForNavDrawerGovernment);
 
             }

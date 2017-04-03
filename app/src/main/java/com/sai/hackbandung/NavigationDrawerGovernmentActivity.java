@@ -22,8 +22,9 @@ import com.sai.hackbandung.Fragments.InProgressReportsGovernment;
 
 public class NavigationDrawerGovernmentActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private String usernameFromSignInOrAgency;
-    private String fullnameFromSignInOrAgency;
+    private String usernameFromSignInOrGovAgency;
+    private String fullnameFromSignInOrGovAgency;
+    private String resAgencyFromSignInOrGovAgency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +48,8 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
         // retrieve intent data from User Role Activity
         retrieveIntentData(savedInstanceState);
 
-        Toast.makeText(NavigationDrawerGovernmentActivity.this, "username from signin or agency: " + usernameFromSignInOrAgency, Toast.LENGTH_LONG).show();
-        Toast.makeText(NavigationDrawerGovernmentActivity.this, "fullname from signin or agency: " + fullnameFromSignInOrAgency, Toast.LENGTH_LONG).show();
+        //Toast.makeText(NavigationDrawerGovernmentActivity.this, "username from signin or agency: " + usernameFromSignInOrAgency, Toast.LENGTH_LONG).show();
+        //Toast.makeText(NavigationDrawerGovernmentActivity.this, "fullname from signin or agency: " + fullnameFromSignInOrAgency, Toast.LENGTH_LONG).show();
 
     }
 
@@ -91,18 +92,31 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
         int id = item.getItemId();
         Fragment fragment = null;
 
+        // Data to be sent to Fragment:
+        // - responsibleAgency
+
+        // Use bundle to pass data
+        Bundle data = new Bundle();
+        data.putString("USERNAME_FROM_NAVDRAWERGOVERNMENT", usernameFromSignInOrGovAgency);
+        data.putString("FULLNAME_FROM_NAVDRAWERGOVERNMENT", fullnameFromSignInOrGovAgency);
+        data.putString("RESAGENCY_FROM_NAVDRAWERGOVERNMENT", resAgencyFromSignInOrGovAgency);
+
         switch (id){
             case R.id.nav_ALL_REPORTS:
                 fragment = new AllReportsGovernment();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_IN_PROGRESS_REPORTS:
                 fragment = new InProgressReportsGovernment();
+                fragment.setArguments(data);
                 break;
             case R.id.nav_COMPLETED_REPORTS:
                 fragment = new CompletedReportsGovernment();
+                fragment.setArguments(data);
                 break;
             default:
                 fragment = new AllReportsGovernment();
+                fragment.setArguments(data);
                 break;
         }
 
@@ -125,20 +139,24 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
 
             if(extras == null) {
 
-                usernameFromSignInOrAgency = null;
-                fullnameFromSignInOrAgency = null;
+                usernameFromSignInOrGovAgency = null;
+                fullnameFromSignInOrGovAgency = null;
+                resAgencyFromSignInOrGovAgency = null;
 
             } else {
 
-                usernameFromSignInOrAgency = extras.getString("USERNAME_FROM_SIGNIN_OR_AGENCY");
-                fullnameFromSignInOrAgency = extras.getString("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+                usernameFromSignInOrGovAgency = extras.getString("USERNAME_FROM_SIGNIN_OR_AGENCY");
+                fullnameFromSignInOrGovAgency = extras.getString("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+                resAgencyFromSignInOrGovAgency = extras.getString("RESAGENCY_FROM_SIGNIN_OR_AGENCY");
 
             }
 
         } else {
 
-            usernameFromSignInOrAgency = (String) savedInstanceState.getSerializable("USERNAME_FROM_SIGNIN_OR_AGENCY");
-            fullnameFromSignInOrAgency = (String) savedInstanceState.getSerializable("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+            usernameFromSignInOrGovAgency = (String) savedInstanceState.getSerializable("USERNAME_FROM_SIGNIN_OR_AGENCY");
+            fullnameFromSignInOrGovAgency = (String) savedInstanceState.getSerializable("FULLNAME_FROM_SIGNIN_OR_AGENCY");
+            resAgencyFromSignInOrGovAgency = (String) savedInstanceState.getSerializable("RESAGENCY_FROM_SIGNIN_OR_AGENCY");
+
         }
 
     }

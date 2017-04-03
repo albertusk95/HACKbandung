@@ -122,21 +122,67 @@
 
             </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/textViewCompletionTime_START_TIME"
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewPeriodOfTime"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="TIME START"
-                android:textSize="25dp"
-                android:layout_below="@id/cardViewAfter" />
+                android:layout_margin="8dp"
+                android:layout_below="@id/cardViewAfter"
+                android:padding="8dp">
 
-            <TextView
-                android:id="@+id/textViewCompletionTime_FINISH_TIME"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:text="TIME FINISH"
-                android:textSize="25dp"
-                android:layout_below="@id/textViewCompletionTime_START_TIME" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp">
+
+                    <TextView
+                        android:id="@+id/textViewCompletionTime_PERIOD_OF_TIME"
+                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="Period of Work"
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:id="@+id/textViewCompletionTime_START_TIME_LABEL"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Start"
+                        android:textSize="25dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_below="@id/textViewCompletionTime_PERIOD_OF_TIME" />
+
+                    <TextView
+                        android:id="@+id/textViewCompletionTime_START_TIME_VALUE"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="start value"
+                        android:textSize="25dp"
+                        android:layout_below="@id/textViewCompletionTime_PERIOD_OF_TIME"
+                        android:layout_toRightOf="@id/textViewCompletionTime_START_TIME_LABEL" />
+
+                    <TextView
+                        android:id="@+id/textViewCompletionTime_FINISH_TIME_LABEL"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Finish"
+                        android:textSize="25dp"
+                        android:layout_marginRight="30dp"
+                        android:layout_below="@id/textViewCompletionTime_START_TIME_LABEL" />
+
+                    <TextView
+                        android:id="@+id/textViewCompletionTime_FINISH_TIME_VALUE"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="Finish"
+                        android:textSize="25dp"
+                        android:layout_below="@id/textViewCompletionTime_START_TIME_VALUE"
+                        android:layout_toRightOf="@id/textViewCompletionTime_FINISH_TIME_LABEL" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 

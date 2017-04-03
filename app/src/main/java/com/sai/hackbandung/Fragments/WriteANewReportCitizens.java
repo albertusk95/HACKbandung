@@ -56,8 +56,9 @@ public class WriteANewReportCitizens extends Fragment {
     Button buttonTakeAPhoto;
     Button buttonSend;
 
-    EditText editTextReport;
     EditText editTextTopic;
+    EditText editTextLocation;
+    EditText editTextReport;
 
     ImageView imageViewTakenPhoto;
 
@@ -96,12 +97,14 @@ public class WriteANewReportCitizens extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
+
         // initialize the views
         buttonTakeAPhoto = (Button) v.findViewById(R.id.buttonWriteANewReportActivity_CAMERA);
         buttonSend = (Button) v.findViewById(R.id.buttonWriteANewReportActivity_SEND);
 
-        editTextReport = (EditText) v.findViewById(R.id.editTextWriteANewReportActivity);
         editTextTopic = (EditText) v.findViewById(R.id.editTextWriteANewReportActivity_TOPIC);
+        editTextLocation = (EditText) v.findViewById(R.id.editTextWriteANewReportActivity_LOCATION);
+        editTextReport = (EditText) v.findViewById(R.id.editTextWriteANewReportActivity_MESSAGE);
 
         imageViewTakenPhoto = (ImageView) v.findViewById(R.id.imageViewWriteANewReportActivity);
 
@@ -263,6 +266,26 @@ public class WriteANewReportCitizens extends Fragment {
 
     }
 
+    private String preprocessAddress(String preAddress) {
+
+        // split with space as the delimiter
+        String[] splitted_preAddres = preAddress.split("\\s+");
+
+        String tmp_res = "";
+
+        for (int idx = 0; idx < splitted_preAddres.length; idx++) {
+
+            if (idx != splitted_preAddres.length - 1) {
+                tmp_res = tmp_res + splitted_preAddres[idx] + "+";
+            } else {
+                tmp_res = tmp_res + splitted_preAddres[idx];
+            }
+        }
+
+        return tmp_res;
+
+    }
+
     private void uploadFileBytes() {
 
         // initialize user input
@@ -270,7 +293,7 @@ public class WriteANewReportCitizens extends Fragment {
         postingDate = getPostingDate();
         finishDate = "Not Assigned";
         responsibleAgency = "Not Assigned";
-        address = "Not Assigned";
+        address = preprocessAddress(editTextLocation.getText().toString().trim());
         userRole = "citizens";
         username = usernameFromNAVDRAWCITIZENS;
         fullname = fullnameFromNAVDRAWCITIZENS;

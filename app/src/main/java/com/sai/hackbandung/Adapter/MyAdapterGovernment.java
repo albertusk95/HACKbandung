@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import com.sai.hackbandung.CompletionReportByAgencyActivity;
 import com.sai.hackbandung.Constants.Constants;
 import com.sai.hackbandung.DatabaseClass.ReportInfo;
+import com.sai.hackbandung.InProgressGovernmentDetail;
 import com.sai.hackbandung.R;
 
 import java.util.List;
@@ -183,6 +184,12 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
 
                     mDatabase = FirebaseDatabase.getInstance().getReference();
                     mDatabase.child(Constants.DATABASE_PATH_UPLOADS + "/" + reportInfos.get(getAdapterPosition()).REPORT_ID).setValue(new_RI);
+
+                    // redirect to the more detail page showing the location
+                    Intent intent = new Intent(v.getContext(), InProgressGovernmentDetail.class);
+                    intent.putExtra("GOVERNMENT_WIP_ADDRESS", reportInfos.get(getAdapterPosition()).address);
+
+                    v.getContext().startActivity(intent);
 
 
 /*

@@ -87,7 +87,7 @@ public class CompleteDetailActivity extends AppCompatActivity {
         });
 
         // image verification AFTER
-        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_UPLOADS + imageView_imgREF_AFTER_COMPLETED + ".jpg");
+        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_UPLOADS + imgREF + ".jpg/" + imageView_imgREF_AFTER_COMPLETED + ".jpg");
 
         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override

@@ -87,14 +87,18 @@ public class WaitingReportsCitizens extends Fragment {
         //displaying progress dialog while fetching images
         progressDialog.setMessage("Please wait...");
         progressDialog.show();
-        mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+        //mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //adding an event listener to fetch values
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.child(Constants.DATABASE_PATH_UPLOADS).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 //dismissing the progress dialog
                 progressDialog.dismiss();
+
+                reportInfos = new ArrayList<>();
 
                 // get all data having the corresponding username and status WAITING
                 for (DataSnapshot postSnapshot : snapshot.getChildren()) {

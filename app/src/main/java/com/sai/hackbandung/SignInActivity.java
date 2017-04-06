@@ -91,6 +91,9 @@ public class SignInActivity extends AppCompatActivity {
 
         });
 
+        // set properties
+        //buttonSignin.setBackgroundColor(0xff852b);
+
     }
 
     private void authenticateUser() {
@@ -140,7 +143,7 @@ public class SignInActivity extends AppCompatActivity {
                 } else {
 
                     // invalid access
-                    Toast.makeText(getApplicationContext(), "Login check for citizens failed", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "Login check for citizens failed", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -202,7 +205,7 @@ public class SignInActivity extends AppCompatActivity {
                     } else {
 
                         // invalid access
-                        Toast.makeText(getApplicationContext(), "Login check for government failed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Login failed", Toast.LENGTH_SHORT).show();
 
                     }
 

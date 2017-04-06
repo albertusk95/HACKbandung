@@ -136,6 +136,10 @@ public class WriteANewReportCitizens extends Fragment {
 
         });
 
+        // set properties
+        //buttonTakeAPhoto.setBackgroundColor(0xff852b);
+        //buttonSend.setBackgroundColor(0xff852b);
+
         return v;
 
     }
@@ -163,7 +167,7 @@ public class WriteANewReportCitizens extends Fragment {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
             imageViewTakenPhoto.setImageBitmap(photo);
 
-            Toast.makeText(getActivity().getApplicationContext(), "User data: " + data.getData(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity().getApplicationContext(), "User data: " + data.getData(), Toast.LENGTH_LONG).show();
 
         }
     }
@@ -280,6 +284,7 @@ public class WriteANewReportCitizens extends Fragment {
             } else {
                 tmp_res = tmp_res + splitted_preAddres[idx];
             }
+
         }
 
         return tmp_res;

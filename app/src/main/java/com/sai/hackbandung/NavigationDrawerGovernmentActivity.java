@@ -1,5 +1,6 @@
 package com.sai.hackbandung;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sai.hackbandung.Fragments.AllReportsGovernment;
@@ -25,6 +28,11 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
     private String usernameFromSignInOrGovAgency;
     private String fullnameFromSignInOrGovAgency;
     private String resAgencyFromSignInOrGovAgency;
+
+    private TextView textViewNavDrawerGovFullname;
+    private TextView textViewNavDrawerGovUsername;
+
+    //private ImageView imageViewNavDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +52,20 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
         // retrieve intent data from User Role Activity
         retrieveIntentData(savedInstanceState);
 
-        //Toast.makeText(NavigationDrawerGovernmentActivity.this, "username from signin or agency: " + usernameFromSignInOrAgency, Toast.LENGTH_LONG).show();
-        //Toast.makeText(NavigationDrawerGovernmentActivity.this, "fullname from signin or agency: " + fullnameFromSignInOrAgency, Toast.LENGTH_LONG).show();
+        // set header info
+        View header = navigationView.getHeaderView(0);
+        textViewNavDrawerGovFullname = (TextView)header.findViewById(R.id.textViewNavDrawerGovFullname);
+        textViewNavDrawerGovUsername = (TextView)header.findViewById(R.id.textViewNavDrawerGovUsername);
+
+        //imageViewNavDrawer = (ImageView)header.findViewById(R.id.imageView);
+
+        textViewNavDrawerGovFullname.setText(fullnameFromSignInOrGovAgency);
+        textViewNavDrawerGovUsername.setText(usernameFromSignInOrGovAgency);
+
+        //imageViewNavDrawer.setImageResource(R.drawable.avatar);
 
     }
 
@@ -114,6 +130,9 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
                 fragment = new CompletedReportsGovernment();
                 fragment.setArguments(data);
                 break;
+            case R.id.nav_LOGOUT:
+                logoutApp();
+                break;
             default:
                 fragment = new AllReportsGovernment();
                 fragment.setArguments(data);
@@ -158,6 +177,14 @@ public class NavigationDrawerGovernmentActivity extends AppCompatActivity implem
             resAgencyFromSignInOrGovAgency = (String) savedInstanceState.getSerializable("RESAGENCY_FROM_SIGNIN_OR_AGENCY");
 
         }
+
+    }
+
+    private void logoutApp() {
+
+        Intent intentForLogOut = new Intent(NavigationDrawerGovernmentActivity.this, MainActivity.class);
+
+        NavigationDrawerGovernmentActivity.this.startActivity(intentForLogOut);
 
     }
 

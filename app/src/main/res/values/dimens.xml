@@ -19,8 +19,8 @@
 
     <!-- USER ROLE ACTIVITY -->
     <dimen name="activity_userrole_title">36dp</dimen>
-    <dimen name="activity_userrole_button_citizens">16dp</dimen>
-    <dimen name="activity_userrole_button_government">16dp</dimen>
+    <dimen name="activity_userrole_button_citizens">18dp</dimen>
+    <dimen name="activity_userrole_button_government">18dp</dimen>
 
     <!-- WRITE A NEW REPORT -->
     <dimen name="write_a_new_report_citizens">18dp</dimen>

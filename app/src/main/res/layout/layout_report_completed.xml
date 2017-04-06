@@ -6,7 +6,7 @@
     android:layout_marginLeft="12dp"
     android:layout_marginRight="12dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="100dp">
+            android:padding="25dp">
 
             <ImageView
                 android:id="@+id/imageViewVerification"
@@ -30,6 +30,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Topic"
+                android:textSize="16dp"
+                android:textStyle="bold"
                 android:layout_marginBottom="25dp"
                 android:textAlignment="center"
                 android:layout_below="@id/imageViewVerification" />
@@ -39,7 +41,8 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Waiting"
-                android:layout_marginLeft="12dp"
+                android:textStyle="bold"
+                android:textSize="14dp"
                 android:layout_marginBottom="15dp"
                 android:layout_below="@id/textViewTopic"/>
 
@@ -48,7 +51,8 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Work In Progress"
-                android:layout_marginLeft="12dp"
+                android:textStyle="bold"
+                android:textSize="14dp"
                 android:layout_marginBottom="15dp"
                 android:layout_below="@id/textViewStatusWaiting"/>
 
@@ -57,7 +61,8 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Done"
-                android:layout_marginLeft="12dp"
+                android:textStyle="bold"
+                android:textSize="14dp"
                 android:layout_marginBottom="15dp"
                 android:layout_below="@id/textViewStatusWIP"/>
 
@@ -66,8 +71,9 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Posting Date"
-                android:layout_marginLeft="12dp"
+                android:textSize="12dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_below="@id/textViewTopic"
                 android:layout_toRightOf="@id/textViewStatusWaiting" />
 
@@ -76,8 +82,9 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Agency"
-                android:layout_marginLeft="12dp"
+                android:textSize="12dp"
                 android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_below="@id/textViewPostingDate"
                 android:layout_toRightOf="@id/textViewStatusWIP"/>
 
@@ -87,31 +94,33 @@
                 android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:text="Address"
+                android:textSize="12dp"
                 android:layout_marginBottom="15dp"
-                android:layout_marginLeft="12dp"
+                android:layout_marginLeft="15dp"
                 android:layout_below="@id/textViewGovernmentAgency"
                 android:layout_toRightOf="@id/textViewStatusDone"/>
-
-
-            <Button
-                android:id="@+id/buttonViewDetailsCompleted_CITIZENS"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="9dp"
-                android:layout_toRightOf="@id/textViewPostingDate"
-                android:layout_below="@id/textViewTopic"
-                android:text="Details" />
 
             <TextView
                 android:id="@+id/textViewMessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Message"
-                android:layout_marginLeft="12dp"
+                android:textSize="14dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="15dp"
                 android:layout_below="@id/textViewAddress" />
+
+            <Button
+                android:id="@+id/buttonViewDetailsCompleted_CITIZENS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="20dp"
+                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/textViewMessage"
+                android:text="Show More Info"
+                android:background="#f7dc6f" />
 
         </RelativeLayout>
 

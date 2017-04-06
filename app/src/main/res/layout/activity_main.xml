@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/app_background_color"
     tools:context="com.sai.hackbandung.MainActivity">
 
     <LinearLayout
@@ -50,7 +51,8 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="@dimen/activity_main_button_signup"
-            android:text="@string/buttonMainActivity_SIGNUP" />
+            android:text="@string/buttonMainActivity_SIGNUP"
+            android:background="#f7dc6f" />
 
 
         <TextView

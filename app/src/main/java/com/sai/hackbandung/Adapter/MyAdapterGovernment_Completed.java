@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.sai.hackbandung.CompleteReportGovernmentDetail;
 import com.sai.hackbandung.CompletionReportByAgencyActivity;
 import com.sai.hackbandung.Constants.Constants;
 import com.sai.hackbandung.DatabaseClass.ReportInfo;
@@ -34,7 +35,7 @@ import java.util.List;
  * Created by AlbertusK95 on 4/3/2017.
  */
 
-public class MyAdapterGovernment_WIP extends RecyclerView.Adapter<MyAdapterGovernment_WIP.ViewHolder> {
+public class MyAdapterGovernment_Completed extends RecyclerView.Adapter<MyAdapterGovernment_Completed.ViewHolder> {
 
     private Context context;
     private List<ReportInfo> reportInfos;
@@ -43,14 +44,14 @@ public class MyAdapterGovernment_WIP extends RecyclerView.Adapter<MyAdapterGover
     private StorageReference storageReference;
     private DatabaseReference mDatabase;
 
-    public MyAdapterGovernment_WIP(Context context, List<ReportInfo> reportInfos) {
+    public MyAdapterGovernment_Completed(Context context, List<ReportInfo> reportInfos) {
         this.reportInfos = reportInfos;
         this.context = context;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_report_government_wip, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_report_government_completed, parent, false);
 
         ViewHolder viewHolder = new ViewHolder(v);
 
@@ -58,7 +59,7 @@ public class MyAdapterGovernment_WIP extends RecyclerView.Adapter<MyAdapterGover
     }
 
     @Override
-    public void onBindViewHolder(final MyAdapterGovernment_WIP.ViewHolder holder, int position) {
+    public void onBindViewHolder(final MyAdapterGovernment_Completed.ViewHolder holder, int position) {
 
         final ReportInfo reportInfo = reportInfos.get(position);
 
@@ -146,8 +147,12 @@ public class MyAdapterGovernment_WIP extends RecyclerView.Adapter<MyAdapterGover
                     // send the data to the completion report page
                     // AND store into the database after the completion report is completed
 
-                    Intent intent = new Intent(v.getContext(), InProgressGovernmentDetail.class);
-                    intent.putExtra("GOVERNMENT_WIP_ADDRESS", reportInfos.get(getAdapterPosition()).address);
+                    Intent intent = new Intent(v.getContext(), CompleteReportGovernmentDetail.class);
+                    intent.putExtra("COMPLETED_GOV_IMGREF", reportInfos.get(getAdapterPosition()).imgREF);
+                    intent.putExtra("COMPLETED_GOV_IMGREF_AFTER_COMPLETED", reportInfos.get(getAdapterPosition()).imgREF_AFTER_COMPLETED);
+
+                    intent.putExtra("COMPLETED_GOV_START_TIME", reportInfos.get(getAdapterPosition()).postingDate);
+                    intent.putExtra("COMPLETED_GOV_FINISH_TIME", reportInfos.get(getAdapterPosition()).finishDate);
 
                     v.getContext().startActivity(intent);
 

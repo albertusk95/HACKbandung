@@ -66,7 +66,7 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
         setTitle("Completion Report");
         setContentView(R.layout.activity_completion_report_by_agency);
 
-        storageReference = FirebaseStorage.getInstance().getReference(Constants.STORAGE_PATH_UPLOADS);
+        //storageReference = FirebaseStorage.getInstance().getReference(Constants.STORAGE_PATH_UPLOADS);
         mDatabase = FirebaseDatabase.getInstance().getReference(Constants.DATABASE_PATH_UPLOADS);
 
         // retrieve intent data
@@ -107,6 +107,10 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
 
         // set value to the views
         setValueToViews();
+
+        //set properties
+        //buttonTakePhoto.setBackgroundColor(0xff852b);
+        //buttonSubmit.setBackgroundColor(0xff852b);
 
     }
 
@@ -259,7 +263,9 @@ public class CompletionReportByAgencyActivity extends AppCompatActivity {
 
         imgREF_AFTER_COMPLETED = System.currentTimeMillis();
 
-        StorageReference sRef = storageReference.child(imgREF_AFTER_COMPLETED + ".jpg");
+        // upload / imgREF / upload / imgREF_AFTER
+        storageReference = FirebaseStorage.getInstance().getReference();
+        StorageReference sRef = storageReference.child(Constants.STORAGE_PATH_UPLOADS + imgREF_AFTER_COMPLETED + ".jpg");
 
         UploadTask uploadTask = sRef.putBytes(data);
 

@@ -26,8 +26,8 @@ public class InProgressGovernmentDetail extends AppCompatActivity {
     private Button buttonGetDirection;
 
     private int zoom = 14;
-    private int mapWidth = 640;
-    private int mapHeight = 640;
+    private int mapWidth = 1024;
+    private int mapHeight = 1024;
     private String maptype = "roadmap";
     public int scale = 1;
 
@@ -105,6 +105,9 @@ public class InProgressGovernmentDetail extends AppCompatActivity {
             }
 
         });
+
+        // set properties
+        //buttonGetDirection.setBackgroundColor(0xff852b);
 
     }
 

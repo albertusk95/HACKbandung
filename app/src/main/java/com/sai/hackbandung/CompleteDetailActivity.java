@@ -40,7 +40,7 @@ public class CompleteDetailActivity extends AppCompatActivity {
         // retrieve the username from signup
         retrieveDataFromAdapterCompleted(savedInstanceState);
 
-        Toast.makeText(this, "Intent CDA: " + agency + " : " + imgREF + " : " + imgREF_AFTER_COMPLETED, Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Intent CDA: " + agency + " : " + imgREF + " : " + imgREF_AFTER_COMPLETED, Toast.LENGTH_LONG).show();
 
         // set views
         textView_HandledBy = (TextView) findViewById(R.id.textViewCompleteDetailActivity_HANDLE_BY_VALUE);
@@ -70,8 +70,8 @@ public class CompleteDetailActivity extends AppCompatActivity {
             public void onSuccess(byte[] bytes) {
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.outWidth = 100;
-                options.outHeight = 100;
+                options.outWidth = 200;
+                options.outHeight = 200;
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
 
                 imageView_imgREF.setImageBitmap(bitmap);
@@ -87,15 +87,16 @@ public class CompleteDetailActivity extends AppCompatActivity {
         });
 
         // image verification AFTER
-        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_UPLOADS + imgREF + ".jpg/" + imageView_imgREF_AFTER_COMPLETED + ".jpg");
+        //String childRef = Constants.STORAGE_PATH_UPLOADS + imgREF + ".jpg/" + Constants.STORAGE_PATH_UPLOADS + imgREF_AFTER_COMPLETED + ".jpg";
+        storageReference = FirebaseStorage.getInstance().getReference().child(Constants.STORAGE_PATH_UPLOADS + imgREF_AFTER_COMPLETED + ".jpg");
 
         storageReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
             @Override
             public void onSuccess(byte[] bytes) {
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.outWidth = 100;
-                options.outHeight = 100;
+                options.outWidth = 200;
+                options.outHeight = 200;
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
 
                 imageView_imgREF_AFTER_COMPLETED.setImageBitmap(bitmap);

@@ -29,18 +29,18 @@ public class GovernmentAgencyActivity extends AppCompatActivity {
             "PJU DBMP"
     } ;
     int[] imageId = {
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera,
-            R.drawable.ic_menu_camera
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency,
+            R.drawable.agency
     };
 
     private String usernameFromUserRole;

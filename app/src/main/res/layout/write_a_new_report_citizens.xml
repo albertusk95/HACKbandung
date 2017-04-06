@@ -11,59 +11,30 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/app_background_color">
 
     <TableLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:stretchColumns="1">
+        android:padding="20dp">
 
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <!-- TAKE A PHOTO BUTTON -->
-            <Button
-                android:id="@+id/buttonWriteANewReportActivity_CAMERA"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="28dp"
-                android:text="@string/buttonWriteANewReportActivity_CAMERA" />
-
-            <!-- SEND BUTTON -->
-            <Button
-                android:id="@+id/buttonWriteANewReportActivity_SEND"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="28dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/buttonWriteANewReportActivity_SEND" />
-
-        </LinearLayout>
 
         <TextView
             android:id="@+id/textViewWriteANewReportActivity_TOPIC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:paddingLeft="30dp"
             android:textStyle="bold"
             android:textSize="@dimen/write_a_new_report_citizens"
             android:text="@string/textViewWriteANewReportActivity_TOPIC" />
 
         <EditText
             android:id="@+id/editTextWriteANewReportActivity_TOPIC"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:hint="Write a topic"
-            android:textSize="17dp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textViewWriteANewReportActivity_LOCATION"
@@ -71,20 +42,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
-            android:paddingLeft="30dp"
             android:textStyle="bold"
             android:textSize="@dimen/write_a_new_report_citizens"
             android:text="Location" />
 
         <EditText
             android:id="@+id/editTextWriteANewReportActivity_LOCATION"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
             android:hint="Write the location"
-            android:textSize="17dp" />
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textViewWriteANewReportActivity_MESSAGE"
@@ -92,20 +60,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
-            android:paddingLeft="30dp"
             android:textStyle="bold"
             android:textSize="@dimen/write_a_new_report_citizens"
             android:text="Message" />
 
         <EditText
             android:id="@+id/editTextWriteANewReportActivity_MESSAGE"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="top"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:hint="Write a messagee"
-            android:textSize="17dp" />
+            android:hint="Write a message"
+            android:textSize="14dp" />
 
         <TextView
             android:id="@+id/textViewWriteANewReportActivity_IMAGE"
@@ -113,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="12dp"
-            android:paddingLeft="30dp"
             android:textStyle="bold"
             android:textSize="@dimen/write_a_new_report_citizens"
             android:text="Photo" />
@@ -122,6 +86,26 @@
             android:id="@+id/imageViewWriteANewReportActivity"
             android:layout_width="300dp"
             android:layout_height="200dp" />
+
+        <!-- TAKE A PHOTO BUTTON -->
+        <Button
+            android:id="@+id/buttonWriteANewReportActivity_CAMERA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/buttonWriteANewReportActivity_CAMERA"
+            android:textStyle="bold"
+            android:background="#f7dc6f" />
+
+        <!-- SEND BUTTON -->
+        <Button
+            android:id="@+id/buttonWriteANewReportActivity_SEND"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#f7dc6f"
+            android:textStyle="bold"
+            android:text="@string/buttonWriteANewReportActivity_SEND" />
 
     </TableLayout>
 

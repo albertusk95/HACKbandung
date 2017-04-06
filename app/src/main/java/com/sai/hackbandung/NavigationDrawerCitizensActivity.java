@@ -1,5 +1,6 @@
 package com.sai.hackbandung;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sai.hackbandung.Fragments.AllReportsCitizens;
@@ -26,6 +29,11 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
 
     private String usernameFromSignInOrUserRole;
     private String fullnameFromSignIOrUserRole;
+
+    private TextView textViewNavDrawerFullName;
+    private TextView textViewNavDrawerUsername;
+
+    //private ImageView imageViewNavDrawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +56,17 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
         // retrieve intent data from User Role Activity
         retrieveIntentData(savedInstanceState);
 
-        //Toast.makeText(NavigationDrawerCitizensActivity.this, "username from signin or userrole: " + usernameFromSignInOrUserRole, Toast.LENGTH_LONG).show();
-        //Toast.makeText(NavigationDrawerCitizensActivity.this, "fullname from signin or userrole: " + fullnameFromSignIOrUserRole, Toast.LENGTH_LONG).show();
+        // set header info
+        View header = navigationView.getHeaderView(0);
+        textViewNavDrawerFullName = (TextView)header.findViewById(R.id.textViewNavDrawerFullName);
+        textViewNavDrawerUsername = (TextView)header.findViewById(R.id.textViewNavDrawerUsername);
+
+        //imageViewNavDrawer = (ImageView)header.findViewById(R.id.imageView);
+
+        textViewNavDrawerFullName.setText(fullnameFromSignIOrUserRole);
+        textViewNavDrawerUsername.setText(usernameFromSignInOrUserRole);
+
+        //imageViewNavDrawer.setImageResource(R.drawable.avatar);
 
     }
 
@@ -121,6 +138,9 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
                 fragment = new CompletedReportsCitizens();
                 fragment.setArguments(data);
                 break;
+            case R.id.nav_LOGOUT:
+                logoutApp();
+                break;
             default:
                 fragment = new WriteANewReportCitizens();
                 fragment.setArguments(data);
@@ -165,4 +185,13 @@ public class NavigationDrawerCitizensActivity extends AppCompatActivity implemen
         }
 
     }
+
+    private void logoutApp() {
+
+        Intent intentForLogOut = new Intent(NavigationDrawerCitizensActivity.this, MainActivity.class);
+
+        NavigationDrawerCitizensActivity.this.startActivity(intentForLogOut);
+
+    }
+
 }

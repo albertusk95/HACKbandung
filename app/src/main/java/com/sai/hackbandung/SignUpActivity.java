@@ -96,6 +96,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         });
 
+        // set properties
+        //buttonSignup.setBackgroundColor(0xff852b);
+
     }
 
     private void registerUser(){
@@ -148,7 +151,7 @@ public class SignUpActivity extends AppCompatActivity {
                 int usernameExistenceStatus = 0;
                 int emailExistenceStatus = 0;
 
-                Toast.makeText(SignUpActivity.this, "On Data Change Citizens", Toast.LENGTH_LONG).show();
+                //Toast.makeText(SignUpActivity.this, "On Data Change Citizens", Toast.LENGTH_LONG).show();
 
                 for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -179,12 +182,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                     if (isUsernameExist == 1) {
                         // username is already exist
-                        Toast.makeText(SignUpActivity.this, "Username citizens already exists: " + username, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(SignUpActivity.this, "Username citizens already exists: " + username, Toast.LENGTH_LONG).show();
                     }
 
                     if (isEmailExist == 1) {
                         // email is already exist
-                        Toast.makeText(SignUpActivity.this, "Email citizens already exists: " + email, Toast.LENGTH_LONG).show();
+                        //Toast.makeText(SignUpActivity.this, "Email citizens already exists: " + email, Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -209,7 +212,7 @@ public class SignUpActivity extends AppCompatActivity {
                     int usernameExistenceStatus = 0;
                     int emailExistenceStatus = 0;
 
-                    Toast.makeText(SignUpActivity.this, "On Data Change Government", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SignUpActivity.this, "On Data Change Government", Toast.LENGTH_LONG).show();
 
                     for (DataSnapshot noteDataSnapshot : dataSnapshot.getChildren()) {
 
@@ -260,12 +263,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                         if (isUsernameExist == 1) {
                             // username is already exist
-                            Toast.makeText(SignUpActivity.this, "Username government already exists", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(SignUpActivity.this, "Username government already exists", Toast.LENGTH_LONG).show();
                         }
 
                         if (isEmailExist == 1) {
                             // email is already exist
-                            Toast.makeText(SignUpActivity.this, "Email government already exists", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(SignUpActivity.this, "Email government already exists", Toast.LENGTH_LONG).show();
                         }
 
                     }

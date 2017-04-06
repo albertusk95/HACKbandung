@@ -79,13 +79,11 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
 
         // set status background color
         if (reportInfo.status.equals("wip")) {
-            holder.buttonForward.setBackgroundResource(android.R.drawable.btn_default);
-            holder.buttonWIP.setBackgroundColor(Color.CYAN);
-            holder.buttonDone.setBackgroundResource(android.R.drawable.btn_default);
+            holder.buttonWIP.setBackgroundColor(Color.GREEN);
+            //holder.buttonDone.setBackgroundResource(android.R.drawable.btn_default);
         } else if (reportInfo.status.equals("completed")){
-            holder.buttonForward.setBackgroundResource(android.R.drawable.btn_default);
-            holder.buttonWIP.setBackgroundResource(android.R.drawable.btn_default);
-            holder.buttonDone.setBackgroundColor(Color.CYAN);
+            //holder.buttonWIP.setBackgroundResource(android.R.drawable.btn_default);
+            holder.buttonDone.setBackgroundColor(Color.GREEN);
         }
 
 
@@ -97,8 +95,8 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
                 //Toast.makeText(context, "onSuccess", Toast.LENGTH_LONG).show();
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.outWidth = 100;
-                options.outHeight = 100;
+                options.outWidth = 200;
+                options.outHeight = 200;
                 Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, options);
 
                 holder.imageViewCitizensVerification.setImageBitmap(bitmap);
@@ -132,7 +130,6 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
         public TextView textViewCitizensTopic;
         public TextView textViewCitizensMessage;
         public ImageView imageViewCitizensVerification;
-        public Button buttonForward;
         public Button buttonWIP;
         public Button buttonDone;
 
@@ -153,9 +150,12 @@ public class MyAdapterGovernment extends RecyclerView.Adapter<MyAdapterGovernmen
             textViewCitizensTopic = (TextView) itemView.findViewById(R.id.textViewCitizensTopic);
             textViewCitizensMessage = (TextView) itemView.findViewById(R.id.textViewCitizensMessage);
             imageViewCitizensVerification = (ImageView) itemView.findViewById(R.id.imageViewCitizensVerification);
-            buttonForward = (Button) itemView.findViewById(R.id.buttonForward);
             buttonWIP = (Button) itemView.findViewById(R.id.buttonWIP);
             buttonDone = (Button) itemView.findViewById(R.id.buttonDone);
+
+            // set properties
+            //buttonWIP.setBackgroundColor(0xff852b);
+            //buttonDone.setBackgroundColor(0xff852b);
 
             // HANDLER for button W.I.P
             buttonWIP.setOnClickListener(new View.OnClickListener() {

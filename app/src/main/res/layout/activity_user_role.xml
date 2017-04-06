@@ -8,6 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/app_background_color"
     tools:context="com.sai.hackbandung.UserRoleActivity">
 
     <LinearLayout
@@ -31,14 +32,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="95dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="40dp"
             android:layout_gravity="center"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="@dimen/activity_userrole_button_citizens"
-            android:text="@string/buttonUserRoleActivity_CITIZENS" />
+            android:text="@string/buttonUserRoleActivity_CITIZENS"
+            android:background="#f7dc6f" />
 
         <Button
             android:id="@+id/buttonUserRoleActivity_GOVERNMENT"
@@ -51,7 +53,8 @@
             android:paddingTop="20dp"
             android:paddingBottom="20dp"
             android:textSize="@dimen/activity_userrole_button_government"
-            android:text="@string/buttonUserRoleActivity_GOVERNMENT" />
+            android:text="@string/buttonUserRoleActivity_GOVERNMENT"
+            android:background="#f7dc6f" />
 
     </LinearLayout>
 

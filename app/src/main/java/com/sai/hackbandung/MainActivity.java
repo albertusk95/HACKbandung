@@ -1,6 +1,8 @@
 package com.sai.hackbandung;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.provider.CalendarContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
+        // set properties
+        //buttonGoToSignUp.setBackgroundColor(0xff852b);
 
     }
 }

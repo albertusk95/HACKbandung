@@ -37,7 +37,7 @@ public class UserRoleActivity extends AppCompatActivity {
         retrieveDataFromSignup(savedInstanceState);
 
 
-        Toast.makeText(UserRoleActivity.this, "UserRole: " + fullNameFromSignUp + ", " + usernameFromSignUp, Toast.LENGTH_LONG).show();
+        //Toast.makeText(UserRoleActivity.this, "UserRole: " + fullNameFromSignUp + ", " + usernameFromSignUp, Toast.LENGTH_LONG).show();
 
 
         // initialize views
@@ -87,6 +87,10 @@ public class UserRoleActivity extends AppCompatActivity {
 
         });
 
+        // set properties
+        //buttonUserRole_CITIZENS.setBackgroundColor(0xff852b);
+        //buttonUserRole_GOVERNMENT.setBackgroundColor(0xff852b);
+
     }
 
     private void retrieveDataFromSignup(Bundle savedInstanceState) {
@@ -130,7 +134,7 @@ public class UserRoleActivity extends AppCompatActivity {
         DatabaseReference myRef = database.getReference();
         myRef.child("CITIZENS/" + usernameFromSignUp).setValue(new_CI);
 
-        Toast.makeText(UserRoleActivity.this, "saveUserRole_CITIZENS" + usernameFromSignUp + ":" + fullNameFromSignUp, Toast.LENGTH_LONG).show();
+        //Toast.makeText(UserRoleActivity.this, "saveUserRole_CITIZENS" + usernameFromSignUp + ":" + fullNameFromSignUp, Toast.LENGTH_LONG).show();
 
     }
 

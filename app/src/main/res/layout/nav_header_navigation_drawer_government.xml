@@ -20,16 +20,17 @@
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
     <TextView
+        android:id="@+id/textViewNavDrawerGovFullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:text="USER FULL NAME"
+        android:text="Dinas Fullname"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewNavDrawerGovUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="dinas@bandung.com" />
+        android:text="dinas user name" />
 
 </LinearLayout>

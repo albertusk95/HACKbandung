@@ -72,13 +72,13 @@ public class MyAdapterCompleted extends RecyclerView.Adapter<MyAdapterCompleted.
 
         // set status background color
         if (reportInfo.status.equals("waiting")) {
-            holder.textViewStatusWaiting.setBackgroundColor(Color.CYAN);
+            holder.textViewStatusWaiting.setBackgroundColor(Color.GREEN);
             //holder.textViewStatusWaiting.setBackgroundDrawable(holder.gd);
         } else if (reportInfo.status.equals("wip")) {
-            holder.textViewStatusWIP.setBackgroundColor(Color.CYAN);
+            holder.textViewStatusWIP.setBackgroundColor(Color.GREEN);
             //holder.textViewStatusWIP.setBackgroundDrawable(holder.gd);
         } else {
-            holder.textViewStatusDone.setBackgroundColor(Color.CYAN);
+            holder.textViewStatusDone.setBackgroundColor(Color.GREEN);
             //holder.textViewStatusDone.setBackgroundDrawable(holder.gd);
         }
 
@@ -88,7 +88,7 @@ public class MyAdapterCompleted extends RecyclerView.Adapter<MyAdapterCompleted.
             @Override
             public void onSuccess(byte[] bytes) {
 
-                Toast.makeText(context, "onSuccess", Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "onSuccess", Toast.LENGTH_LONG).show();
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.outWidth = 100;
@@ -152,6 +152,9 @@ public class MyAdapterCompleted extends RecyclerView.Adapter<MyAdapterCompleted.
             textViewMessage = (TextView) itemView.findViewById(R.id.textViewMessage);
 
             buttonCompletedDetail = (Button) itemView.findViewById(R.id.buttonViewDetailsCompleted_CITIZENS);
+
+            // set properties
+            //buttonCompletedDetail.setBackgroundColor(0xff852b);
 
             buttonCompletedDetail.setOnClickListener(new View.OnClickListener() {
 

@@ -67,14 +67,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         // set status background color
         if (reportInfo.status.equals("waiting")) {
-            //holder.textViewStatusWaiting.setBackgroundColor(Color.CYAN);
-            holder.textViewStatusWaiting.setBackgroundDrawable(holder.gd);
+            holder.textViewStatusWaiting.setBackgroundColor(Color.GREEN);
+            //holder.textViewStatusWaiting.setBackgroundDrawable(holder.gd);
         } else if (reportInfo.status.equals("wip")) {
-            //holder.textViewStatusWIP.setBackgroundColor(Color.CYAN);
-            holder.textViewStatusWIP.setBackgroundDrawable(holder.gd);
+            holder.textViewStatusWIP.setBackgroundColor(Color.GREEN);
+            //holder.textViewStatusWIP.setBackgroundDrawable(holder.gd);
         } else {
-            //holder.textViewStatusDone.setBackgroundColor(Color.CYAN);
-            holder.textViewStatusDone.setBackgroundDrawable(holder.gd);
+            holder.textViewStatusDone.setBackgroundColor(Color.GREEN);
+            //holder.textViewStatusDone.setBackgroundDrawable(holder.gd);
         }
 
         final long ONE_MEGABYTE = 1024 * 1024;
@@ -82,7 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             @Override
             public void onSuccess(byte[] bytes) {
 
-                Toast.makeText(context, "onSuccess", Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "onSuccess", Toast.LENGTH_LONG).show();
 
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.outWidth = 100;
@@ -122,16 +122,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView textViewAddress;
         public TextView textViewMessage;
 
-        public GradientDrawable gd;
+        //public GradientDrawable gd;
 
         public ViewHolder(View itemView) {
 
             super(itemView);
 
+            /*
             gd = new GradientDrawable();
             gd.setColor(0xFF00FF00);
             gd.setCornerRadius(5);
             gd.setStroke(1, 0xFF000000);
+            */
 
             imageViewVerification = (ImageView) itemView.findViewById(R.id.imageViewVerification);
             textViewTopic = (TextView) itemView.findViewById(R.id.textViewTopic);
